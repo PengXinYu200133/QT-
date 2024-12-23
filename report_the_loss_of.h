@@ -47,6 +47,7 @@ private slots:
     void on_pushButton_11_clicked();
 
     void limitPhoneNumberLength();
+
 signals:
     void closedoor(QString &data);
 private:

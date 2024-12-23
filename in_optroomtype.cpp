@@ -168,10 +168,20 @@ void in_optroomtype::handleSerialData()
 
         if (query.exec()) {
             qDebug() << "数据插入成功！";
+            QString updateQuery = QString("UPDATE available_room SET State = 1 WHERE RoomID = :RoomID"); // 根据房间号匹配
+            QSqlQuery updateStateQuery(db);
+            updateStateQuery.prepare(updateQuery);
+            updateStateQuery.bindValue(":RoomID", roomId);
+
+            if (updateStateQuery.exec()) {
+                qDebug() << "available_room 表的 State 字段更新成功！";
+            } else {
+                qDebug() << "available_room 表的 State 字段更新失败：" << updateStateQuery.lastError().text();
+            }
             QMessageBox::information(this, "成功", "房间已成功入住！");
             if (serial && serial->isOpen()) {
                 serial->close(); // 关闭串口
-                qDebug() << "串口已关闭（确定按钮）";
+                qDebug() << "串口已关闭（成功）";
             }
             delete serial;
             QString maydata = "on:"+roomId;
@@ -183,6 +193,10 @@ void in_optroomtype::handleSerialData()
             QMessageBox::information(this, "错误", "数据插入失败！");
         }
     } else {
+        if (serial && serial->isOpen()) {
+            serial->close(); // 关闭串口
+            qDebug() << "串口已关闭（串口返回数据无效）";
+        }
         QMessageBox::warning(this, "错误", "串口返回数据无效！请先去退卡");
     }
 }

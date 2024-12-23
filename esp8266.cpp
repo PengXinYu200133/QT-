@@ -249,20 +249,32 @@ QString ESP8266::parseStationIP(const QString &response) {
 }
 
 void ESP8266::configureAsServer() {
-    sendCommand("AT+CWMODE=3");         // 设置为 AP+Station 模式
-    QThread::msleep(1000);             // 添加延时
-    sendCommand("AT+CIPMUX=1");        // 启用多连接
+    // 设置为 AP+Station 模式 (模式3)
+    sendCommand("AT+CWMODE=3");
     QThread::msleep(1000);
+
+    // 设置热点名称和密码
+    // 格式: AT+CWSAP="SSID","PASSWORD",<Channel>,<Encryption>
+    // Encryption: 0=Open, 1=WEP, 2=WPA_PSK, 3=WPA2_PSK, 4=WPA_WPA2_PSK
+    sendCommand("AT+CWSAP=\"PXY\",\"12345678\",5,3"); // 设置热点名称为 PXY，密码为 12345678，使用 WPA2_PSK 加密
+    QThread::msleep(1000);
+
+    // 启用多连接
+    sendCommand("AT+CIPMUX=1");
+    QThread::msleep(1000);
+
 
     // 启动 TCP Server
     sendCommand("AT+CIPSERVER=1,1234"); // 启动 TCP Server，监听端口 1234
     QThread::msleep(1000);
 
-    // 启动 UDP Server
-    sendCommand("AT+CIPSTART=0,\"UDP\",\"0.0.0.0\",5678,5678,0"); // 启动 UDP 服务，监听端口 5678
+    sendCommand("AT+CIPCLOSE=0"); // 尝试关闭连接 0（UDP 服务）
     QThread::msleep(1000);
 
-    qDebug() << "ESP8266 配置完成：AP 模式、TCP 服务（端口 1234）、UDP 服务（端口 5678）已启动";
+    // 启动 UDP 服务，绑定到广播地址
+    sendCommand("AT+CIPSTART=0,\"UDP\",\"192.168.4.255\",5678,5678,0"); // 将目标 IP 设置为广播地址 (如 192.168.4.255)
+    QThread::msleep(1000);
+    qDebug() << "ESP8266 配置完成：AP 模式（热点名称：PXY，密码：12345678）、TCP 服务（端口 1234）、UDP 服务（端口 5678）已启动";
 }
 void ESP8266::findIP() {
         sendCommand("AT+CIFSR");           // 查询 IP 地址

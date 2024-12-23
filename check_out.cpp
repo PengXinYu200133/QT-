@@ -205,13 +205,14 @@ void check_out::processRoomNumber(const QString &roomNumber)
 
         // 插入退房记录
         QSqlQuery insertQuery(QSqlDatabase::database("check_out"));
-        insertQuery.prepare("INSERT INTO check_out (name, ID, room_id, room_type, out_time) "
-                            "VALUES (:name, :ID, :room_id, :room_type, :out_time)");
+        insertQuery.prepare("INSERT INTO check_out (name, ID, room_id, room_type, out_time, in_time) "
+                            "VALUES (:name, :ID, :room_id, :room_type, :out_time, :in_time)");
         insertQuery.bindValue(":name", name);
         insertQuery.bindValue(":ID", id);
         insertQuery.bindValue(":room_id", room_id);
         insertQuery.bindValue(":room_type", room_type);
         insertQuery.bindValue(":out_time", out_time);
+        insertQuery.bindValue(":out_time", in_time);
 
         if (!insertQuery.exec()) {
             QMessageBox::critical(this, "错误", "插入退房记录失败：" + insertQuery.lastError().text());
@@ -232,7 +233,7 @@ void check_out::processRoomNumber(const QString &roomNumber)
             // 关闭串口并关闭窗口
             if (serial && serial->isOpen()) {
                 serial->close(); // 关闭串口
-                qDebug() << "串口已关闭（取消按钮）";
+                qDebug() << "串口已关闭（成功）";
             }
             QString data = "off:"+room_id;
             emit closeroom(data);
@@ -267,6 +268,10 @@ void check_out::on_pushButton_clicked()//确认按钮
 
 void check_out::on_pushButton_2_clicked()
 {
+    if (serial && serial->isOpen()) {
+        serial->close(); // 关闭串口
+        qDebug() << "串口已关闭（取消按钮）";
+    }
     this->close();
 }
 
