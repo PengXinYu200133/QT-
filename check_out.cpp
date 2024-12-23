@@ -215,7 +215,7 @@ void check_out::processRoomNumber(const QString &roomNumber)
         insertQuery.bindValue(":out_time", in_time);
 
         if (!insertQuery.exec()) {
-            QMessageBox::critical(this, "错误", "插入退房记录失败：" + insertQuery.lastError().text());
+            QMessageBox::critical(this, "错误", "房间已退：" + insertQuery.lastError().text());
         } else {
             // 插入退房记录成功，更新 available_room 表的 State 字段为 0
             QSqlQuery updateQuery(QSqlDatabase::database("check_out"));

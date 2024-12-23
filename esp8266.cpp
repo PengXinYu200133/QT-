@@ -78,9 +78,9 @@ void ESP8266::sendjson(int a, QString jsondata) {
 void ESP8266::getTime(){
 
     QString myweb ="GET\r\n/?app=life.time&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json HTTP/1.1\r\nHost: api.k780.com:88\r\nConnection: close";
-    sendCommand("AT+CIPSTART=1,\"TCP\",\"api.k780.com\",88");
+    sendCommand("AT+CIPSTART=3,\"TCP\",\"api.k780.com\",88");
     QThread::msleep(1000);
-    sendCommand("AT+CIPSEND=1,"+QString::number(myweb.length()));
+    sendCommand("AT+CIPSEND=3,"+QString::number(myweb.length()));
     QThread::msleep(1000);
     sendCommand(myweb);
 }

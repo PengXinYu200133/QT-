@@ -76,6 +76,7 @@ void MainWindow::senddate(int a) {
     QJsonObject oneYearData;
     QJsonObject threeMonthsData;
     QJsonObject oneMonthData;
+    QJsonObject topFiveRoomTypesData; // 新增的 JSON 对象，用于存储排名前五的房间类型
 
     // 查询近一年内的房间类型统计
     {
@@ -146,27 +147,59 @@ void MainWindow::senddate(int a) {
         oneMonthData["time_range"] = "one_month"; // 标记时间范围
     }
 
-    // 将 JSON 数据转换为字符串并分三次发送
+    // 查询房间类型统计排名前五
+    {
+        qDebug() << "查询房间类型统计排名前五";
+        query.prepare("SELECT room_type, COUNT(*) as count FROM check_in "
+                      "GROUP BY room_type "
+                      "ORDER BY count DESC "
+                      "LIMIT 5");
+        QJsonArray topFiveRoomTypes;
+        if (query.exec()) {
+            while (query.next()) {
+                QJsonObject roomStat;
+                roomStat["room_type"] = query.value("room_type").toString();
+                roomStat["count"] = query.value("count").toInt();
+                topFiveRoomTypes.append(roomStat);
+            }
+        } else {
+            qDebug() << "查询房间类型排名前五失败：" << query.lastError().text();
+        }
+
+        // 如果不足五个，用 "敬请期待！" 填充
+        while (topFiveRoomTypes.size() < 5) {
+            QJsonObject placeholder;
+            placeholder["room_type"] = "敬请期待！";
+            placeholder["count"] = 0;
+            topFiveRoomTypes.append(placeholder);
+        }
+
+        topFiveRoomTypesData["stats"] = topFiveRoomTypes;
+        topFiveRoomTypesData["time_range"] = "top_five"; // 标记时间范围
+    }
+
+    // 将 JSON 数据转换为字符串并分四次发送
     QString oneYearJson = QJsonDocument(oneYearData).toJson(QJsonDocument::Compact);
     QString threeMonthsJson = QJsonDocument(threeMonthsData).toJson(QJsonDocument::Compact);
     QString oneMonthJson = QJsonDocument(oneMonthData).toJson(QJsonDocument::Compact);
+    QString topFiveRoomTypesJson = QJsonDocument(topFiveRoomTypesData).toJson(QJsonDocument::Compact);
 
     qDebug() << "发送 one_year 数据：" << oneYearJson;
-
-
     qDebug() << "发送 three_months 数据：" << threeMonthsJson;
-
-
     qDebug() << "发送 one_month 数据：" << oneMonthJson;
+    qDebug() << "发送 top_five 数据：" << topFiveRoomTypesJson;
 
     QTimer::singleShot(0, [this, a, oneYearJson]() {
         emit sendjson(a, oneYearJson); // 第一次发送
     });
-    QTimer::singleShot(3000, [this, a, threeMonthsJson]() {
+    QTimer::singleShot(1000, [this, a, threeMonthsJson]() {
         emit sendjson(a, threeMonthsJson); // 第二次发送
     });
-    QTimer::singleShot(6000, [this, a, oneMonthJson]() {
+    QTimer::singleShot(2000, [this, a, oneMonthJson]() {
         emit sendjson(a, oneMonthJson); // 第三次发送
+    });
+    QTimer::singleShot(3000, [this, a, topFiveRoomTypesJson]() {
+        emit sendjson(a, topFiveRoomTypesJson); // 第四次发送
     });
 }
 
