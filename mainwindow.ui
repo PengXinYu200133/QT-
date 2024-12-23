@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="widget_5" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>801</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+     </property>
+     <widget class="QDateTimeEdit" name="dateTimeEdit">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>10</y>
+        <width>194</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>50</y>
+        <width>81</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 20px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string>退出</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>50</y>
+        <width>81</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 20px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string>wifi</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ip_address">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>等待ip。。。。</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>90</y>
+       <width>631</width>
+       <height>391</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+     </property>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>100</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>6</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string>大床房：150元</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/dcf.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>100</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>6</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;电影房：800元&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>10</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/dyf.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>100</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>6</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string>机麻房：150元</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>10</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/jmf.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>100</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>6</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string>普通单间：80元</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>10</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/pd.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>240</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>6</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string>普通双人间：90元</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/ps.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>240</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>6</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string>双床房：100元</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>150</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/scf.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>240</y>
+        <width>81</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>6</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string>行政房：600元</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>150</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/xzf.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>240</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>6</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string>总统套房：5000元</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>150</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/zttf.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="available_bigroom">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>131</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 200); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255,0); /* 白色背景，200为不透明度 */
+    border-radius: 20px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="widget_3" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>171</width>
+       <height>391</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+     </property>
+     <widget class="QPushButton" name="pushButton_in">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>入住</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_out">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>80</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>预约</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_lost">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>140</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>挂失</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_continue">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>200</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>补卡</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_7">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>320</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>新建房间</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_continue_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>260</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>退房</string>
+      </property>
+     </widget>
+    </widget>
+    <zorder>widget_2</zorder>
+    <zorder>widget</zorder>
+    <zorder>widget_3</zorder>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

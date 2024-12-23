@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>card_replacement</class>
+ <widget class="QMainWindow" name="card_replacement">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>150</y>
+      <width>801</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>20</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>仿宋</family>
+      <pointsize>26</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */</string>
+    </property>
+    <property name="text">
+     <string>补卡</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>80</y>
+      <width>111</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+    </property>
+    <property name="text">
+     <string>补卡</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>80</y>
+      <width>111</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+    </property>
+    <property name="text">
+     <string>返回</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

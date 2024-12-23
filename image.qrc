@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>gif4.gif</file>
+        <file>gif5.gif</file>
+        <file>jmf.jpg</file>
+        <file>pd.jpg</file>
+        <file>ps.jpg</file>
+        <file>scf.jpg</file>
+        <file>xzf.jpg</file>
+        <file>zttf.jpg</file>
+        <file>dcf.jpg</file>
+        <file>dyf.jpg</file>
+    </qresource>
+</RCC>
