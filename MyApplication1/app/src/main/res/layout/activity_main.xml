@@ -1,0 +1,75 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/ipEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入目标 IP 地址"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/portEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入目标端口号"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/captureButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="拍照识别身份证" />
+
+    <Button
+        android:id="@+id/galleryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="从相册选择身份证" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="姓名：" />
+
+    <TextView
+        android:id="@+id/ocrResultText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="身份证号：" />
+
+    <Button
+        android:id="@+id/sendDataButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="发送数据到 ESP8266" />
+
+    <Button
+        android:id="@+id/checkConnectionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="检查与 ESP8266 的连接" />
+
+    <TextView
+        android:id="@+id/connectionStatusText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="连接状态：" />
+</LinearLayout>
