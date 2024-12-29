@@ -19,7 +19,7 @@ card_replacement::card_replacement(QWidget *parent)
     model = new QStandardItemModel(this);
 
     // 设置列标题
-    model->setColumnCount(6);
+    model->setColumnCount(5);
     model->setHeaderData(0, Qt::Horizontal, tr("ID"));
     model->setHeaderData(1, Qt::Horizontal, tr("Name"));
     model->setHeaderData(2, Qt::Horizontal, tr("Room ID"));

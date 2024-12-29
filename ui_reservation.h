@@ -36,6 +36,7 @@ public:
     QPushButton *pushButton_12;
     QComboBox *roomtybe;
     QLabel *label_6;
+    QLabel *label_2;
     QFrame *frame_2;
     QPushButton *pushButton_1;
     QPushButton *pushButton_2;
@@ -77,14 +78,14 @@ public:
         label->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */"));
         label_4 = new QLabel(frame);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(160, 100, 121, 61));
+        label_4->setGeometry(QRect(30, 100, 181, 61));
         QFont font1;
         font1.setPointSize(16);
         label_4->setFont(font1);
         label_4->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */"));
         label_5 = new QLabel(frame);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(160, 180, 111, 61));
+        label_5->setGeometry(QRect(30, 180, 201, 61));
         label_5->setFont(font1);
         label_5->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */"));
         phonenumber = new QTextEdit(frame);
@@ -114,9 +115,13 @@ public:
         roomtybe->setEditable(true);
         label_6 = new QLabel(frame);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(160, 260, 81, 61));
+        label_6->setGeometry(QRect(30, 260, 181, 61));
         label_6->setFont(font1);
         label_6->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */"));
+        label_2 = new QLabel(frame);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(590, 40, 181, 151));
+        label_2->setWordWrap(true);
         frame_2 = new QFrame(centralwidget);
         frame_2->setObjectName(QString::fromUtf8("frame_2"));
         frame_2->setGeometry(QRect(590, 160, 191, 271));
@@ -224,6 +229,7 @@ public:
         pushButton_11->setText(QCoreApplication::translate("reservation", "\347\241\256\350\256\244", nullptr));
         pushButton_12->setText(QCoreApplication::translate("reservation", "\350\277\224\345\233\236", nullptr));
         label_6->setText(QCoreApplication::translate("reservation", "\346\210\277     \345\236\213\357\274\232", nullptr));
+        label_2->setText(QCoreApplication::translate("reservation", "\346\217\220\347\244\272\357\274\232\345\205\245\344\275\217\346\227\266\351\227\264\346\240\274\345\274\21700000000\344\270\200\344\272\214\344\275\215\350\241\250\347\244\272\346\234\210\344\273\275\357\274\214\344\270\211\345\233\233\344\275\215\350\241\250\347\244\272\346\227\245\346\234\237\357\274\214\344\272\224\345\205\255\344\275\215\350\241\250\347\244\272\346\227\266\357\274\214\344\270\203\345\205\253\344\275\215\350\241\250\347\244\272\345\210\206", nullptr));
         pushButton_1->setText(QCoreApplication::translate("reservation", "1", nullptr));
         pushButton_2->setText(QCoreApplication::translate("reservation", "2", nullptr));
         pushButton_4->setText(QCoreApplication::translate("reservation", "4", nullptr));

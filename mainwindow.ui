@@ -65,24 +65,6 @@
        <string>退出</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>410</x>
-        <y>50</y>
-        <width>81</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
-    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
-    border-radius: 20px; /* 圆角边框 */</string>
-      </property>
-      <property name="text">
-       <string>wifi</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="ip_address">
       <property name="geometry">
        <rect>
@@ -403,17 +385,167 @@
       </property>
      </widget>
      <widget class="QPushButton" name="available_bigroom">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>10</y>
         <width>131</width>
-        <height>81</height>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 0px solid rgba(0, 0, 0, 200); /* 黑色边框，150为不透明度 */
-    background-color: rgba(255, 255, 255,0); /* 白色背景，200为不透明度 */
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 0); /* 白色背景，200为不透明度 */
+    border-radius: 20px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="available_tvroom">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>10</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 0); /* 白色背景，200为不透明度 */
+    border-radius: 20px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="available_jimafang">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>10</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 0); /* 白色背景，200为不透明度 */
+    border-radius: 20px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="available_one">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>10</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 0); /* 白色背景，200为不透明度 */
+    border-radius: 20px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="available_double">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 0); /* 白色背景，200为不透明度 */
+    border-radius: 20px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="available_rowbedroom">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>150</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 0); /* 白色背景，200为不透明度 */
+    border-radius: 20px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="available_xingzhengfang">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>150</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 0); /* 白色背景，200为不透明度 */
+    border-radius: 20px; /* 圆角边框 */</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="available_zongtongtaof">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>150</y>
+        <width>131</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 0px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 0); /* 白色背景，200为不透明度 */
     border-radius: 20px; /* 圆角边框 */</string>
       </property>
       <property name="text">

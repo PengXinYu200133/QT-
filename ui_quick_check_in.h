@@ -72,7 +72,7 @@ public:
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(30, 240, 81, 61));
+        label_5->setGeometry(QRect(10, 240, 171, 61));
         QFont font1;
         font1.setPointSize(16);
         label_5->setFont(font1);
@@ -84,7 +84,7 @@ public:
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(30, 100, 81, 61));
+        label_2->setGeometry(QRect(10, 100, 151, 61));
         label_2->setFont(font1);
         ID = new QTextEdit(centralwidget);
         ID->setObjectName(QString::fromUtf8("ID"));
@@ -94,7 +94,7 @@ public:
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(30, 170, 81, 61));
+        label_3->setGeometry(QRect(10, 170, 161, 61));
         label_3->setFont(font1);
         frame = new QFrame(centralwidget);
         frame->setObjectName(QString::fromUtf8("frame"));

@@ -30,7 +30,7 @@ in::in(QWidget *parent) :
     if (!db.open()) {
         qDebug() << "数据库连接失败：" << db.lastError().text();
         QMessageBox::warning(this, "错误", "无法连接到数据库！");
-        return;
+
     }
 
     // 查询 RoomType 并加载到 QComboBox
@@ -39,7 +39,7 @@ in::in(QWidget *parent) :
     if (!query.exec(selectQuery)) {
         qDebug() << "查询失败：" << query.lastError().text();
         QMessageBox::warning(this, "错误", "无法加载房间类型！");
-        return;
+
     }
 
     while (query.next()) {

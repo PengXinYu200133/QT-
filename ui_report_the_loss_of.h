@@ -72,7 +72,7 @@ public:
         label->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */"));
         label_4 = new QLabel(frame);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(160, 130, 121, 61));
+        label_4->setGeometry(QRect(30, 130, 241, 61));
         QFont font1;
         font1.setPointSize(16);
         label_4->setFont(font1);

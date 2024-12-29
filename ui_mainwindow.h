@@ -27,7 +27,6 @@ public:
     QWidget *widget;
     QDateTimeEdit *dateTimeEdit;
     QPushButton *pushButton;
-    QPushButton *pushButton_2;
     QLabel *ip_address;
     QWidget *widget_2;
     QLabel *label;
@@ -47,6 +46,13 @@ public:
     QLabel *label_15;
     QLabel *label_16;
     QPushButton *available_bigroom;
+    QPushButton *available_tvroom;
+    QPushButton *available_jimafang;
+    QPushButton *available_one;
+    QPushButton *available_double;
+    QPushButton *available_rowbedroom;
+    QPushButton *available_xingzhengfang;
+    QPushButton *available_zongtongtaof;
     QWidget *widget_3;
     QPushButton *pushButton_in;
     QPushButton *pushButton_out;
@@ -78,12 +84,6 @@ public:
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(500, 50, 81, 41));
         pushButton->setStyleSheet(QString::fromUtf8("border: 2px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
-"    background-color: rgba(255, 255, 255, 200); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
-"    border-radius: 20px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
-        pushButton_2 = new QPushButton(widget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(410, 50, 81, 41));
-        pushButton_2->setStyleSheet(QString::fromUtf8("border: 2px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    background-color: rgba(255, 255, 255, 200); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    border-radius: 20px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         ip_address = new QLabel(widget);
@@ -180,9 +180,59 @@ public:
         label_16->setGeometry(QRect(490, 150, 131, 91));
         available_bigroom = new QPushButton(widget_2);
         available_bigroom->setObjectName(QString::fromUtf8("available_bigroom"));
-        available_bigroom->setGeometry(QRect(10, 10, 131, 81));
-        available_bigroom->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 200); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
-"    background-color: rgba(255, 255, 255,0); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+        available_bigroom->setEnabled(true);
+        available_bigroom->setGeometry(QRect(10, 10, 131, 91));
+        available_bigroom->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    background-color: rgba(255, 255, 255, 0); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    border-radius: 20px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
+        available_tvroom = new QPushButton(widget_2);
+        available_tvroom->setObjectName(QString::fromUtf8("available_tvroom"));
+        available_tvroom->setEnabled(true);
+        available_tvroom->setGeometry(QRect(170, 10, 131, 91));
+        available_tvroom->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    background-color: rgba(255, 255, 255, 0); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    border-radius: 20px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
+        available_jimafang = new QPushButton(widget_2);
+        available_jimafang->setObjectName(QString::fromUtf8("available_jimafang"));
+        available_jimafang->setEnabled(true);
+        available_jimafang->setGeometry(QRect(330, 10, 131, 91));
+        available_jimafang->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    background-color: rgba(255, 255, 255, 0); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    border-radius: 20px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
+        available_one = new QPushButton(widget_2);
+        available_one->setObjectName(QString::fromUtf8("available_one"));
+        available_one->setEnabled(true);
+        available_one->setGeometry(QRect(490, 10, 131, 91));
+        available_one->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    background-color: rgba(255, 255, 255, 0); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    border-radius: 20px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
+        available_double = new QPushButton(widget_2);
+        available_double->setObjectName(QString::fromUtf8("available_double"));
+        available_double->setEnabled(true);
+        available_double->setGeometry(QRect(10, 150, 131, 91));
+        available_double->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    background-color: rgba(255, 255, 255, 0); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    border-radius: 20px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
+        available_rowbedroom = new QPushButton(widget_2);
+        available_rowbedroom->setObjectName(QString::fromUtf8("available_rowbedroom"));
+        available_rowbedroom->setEnabled(true);
+        available_rowbedroom->setGeometry(QRect(170, 150, 131, 91));
+        available_rowbedroom->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    background-color: rgba(255, 255, 255, 0); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    border-radius: 20px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
+        available_xingzhengfang = new QPushButton(widget_2);
+        available_xingzhengfang->setObjectName(QString::fromUtf8("available_xingzhengfang"));
+        available_xingzhengfang->setEnabled(true);
+        available_xingzhengfang->setGeometry(QRect(330, 150, 131, 91));
+        available_xingzhengfang->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    background-color: rgba(255, 255, 255, 0); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    border-radius: 20px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
+        available_zongtongtaof = new QPushButton(widget_2);
+        available_zongtongtaof->setObjectName(QString::fromUtf8("available_zongtongtaof"));
+        available_zongtongtaof->setEnabled(true);
+        available_zongtongtaof->setGeometry(QRect(490, 150, 131, 91));
+        available_zongtongtaof->setStyleSheet(QString::fromUtf8("border: 0px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    background-color: rgba(255, 255, 255, 0); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    border-radius: 20px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         widget_3 = new QWidget(widget_5);
         widget_3->setObjectName(QString::fromUtf8("widget_3"));
@@ -222,7 +272,6 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "wifi", nullptr));
         ip_address->setText(QCoreApplication::translate("MainWindow", "\347\255\211\345\276\205ip\343\200\202\343\200\202\343\200\202\343\200\202", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "\345\244\247\345\272\212\346\210\277\357\274\232150\345\205\203", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><img src=\":/dcf.jpg\"/></p></body></html>", nullptr));
@@ -241,6 +290,13 @@ public:
         label_15->setText(QCoreApplication::translate("MainWindow", "\346\200\273\347\273\237\345\245\227\346\210\277\357\274\2325000\345\205\203", nullptr));
         label_16->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><img src=\":/zttf.jpg\"/></p></body></html>", nullptr));
         available_bigroom->setText(QString());
+        available_tvroom->setText(QString());
+        available_jimafang->setText(QString());
+        available_one->setText(QString());
+        available_double->setText(QString());
+        available_rowbedroom->setText(QString());
+        available_xingzhengfang->setText(QString());
+        available_zongtongtaof->setText(QString());
         pushButton_in->setText(QCoreApplication::translate("MainWindow", "\345\205\245\344\275\217", nullptr));
         pushButton_out->setText(QCoreApplication::translate("MainWindow", "\351\242\204\347\272\246", nullptr));
         pushButton_lost->setText(QCoreApplication::translate("MainWindow", "\346\214\202\345\244\261", nullptr));

@@ -211,7 +211,7 @@ void reservation_list::on_pushButton_clicked() // 入住按钮
     // 确保有选中的行
     if (selectedRows.isEmpty()) {
         qDebug() << "未选择任何行";
-        return;
+
     }
 
     // 假设只处理第一选中行的房间号和房间类型
@@ -222,8 +222,7 @@ void reservation_list::on_pushButton_clicked() // 入住按钮
     QAbstractItemModel *model = ui->tableView->model();
     if (!model) {
         qDebug() << "数据模型为空";
-        return;
-    }
+     }
 
     // 获取房间号（第 0 列）和房间类型（第 1 列）
     QString roomNumber = model->data(model->index(row, 0)).toString(); // 第一列（房间号）
@@ -231,7 +230,7 @@ void reservation_list::on_pushButton_clicked() // 入住按钮
     QSqlDatabase db = QSqlDatabase::database("reservation_list");
     if (!db.open()) {
         QMessageBox::critical(nullptr, "Database Error", db.lastError().text());
-        return;
+
     }
 
     QString roomType; // 用于存储查询到的房间类型
@@ -246,12 +245,12 @@ void reservation_list::on_pushButton_clicked() // 入住按钮
         } else {
             qDebug() << "未找到匹配的房间类型";
             QMessageBox::warning(this, "警告", "未找到匹配的房间类型");
-            return;
+
         }
     } else {
         qDebug() << "查询失败：" << query.lastError().text();
         QMessageBox::critical(this, "错误", "查询房间类型失败");
-        return;
+
     }
 
     quick_check_in *p = new quick_check_in(roomNumber, roomType);
@@ -269,7 +268,7 @@ void reservation_list::on_pushButton_clicked() // 入住按钮
     if (!updateQuery.exec()) {
         qDebug() << "更新 reservation 表失败：" << updateQuery.lastError().text();
         QMessageBox::critical(this, "错误", "更新预订状态失败：" + updateQuery.lastError().text());
-        return;
+
     } else {
         qDebug() << "reservation 表已更新，state 字段设置为 1";
     }

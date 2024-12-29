@@ -29,14 +29,26 @@ private slots:
     void on_pushButton_7_clicked();
     void on_pushButton_clicked();
     void on_pushButton_continue_2_clicked();
-    void on_pushButton_2_clicked();
     void myfindip();
     void updateDateTimeEdit(const QDateTime &dateTime);
-    void on_available_room_clicked();
-    void on_label_2_linkActivated(const QString &link);
+
 
     void on_available_bigroom_clicked();
     void senddate(int a);//发送数据信号
+    void on_available_tvroom_clicked();
+
+    void on_available_jimafang_clicked();
+
+    void on_available_one_clicked();
+
+    void on_available_double_clicked();
+
+    void on_available_rowbedroom_clicked();
+
+    void on_available_xingzhengfang_clicked();
+
+    void on_available_zongtongtaof_clicked();
+
 private:
     Ui::MainWindow *ui;
     ESP8266 *esp;       // ESP8266 实例

@@ -57,14 +57,14 @@ public:
         centralwidget->setMaximumSize(QSize(1024, 600));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(-1, 0, 801, 600));
+        label->setGeometry(QRect(-1, 0, 800, 480));
         frame = new QFrame(centralwidget);
         frame->setObjectName(QString::fromUtf8("frame"));
         frame->setGeometry(QRect(140, 40, 521, 431));
         frame->setMouseTracking(true);
         frame->setLayoutDirection(Qt::LeftToRight);
         frame->setStyleSheet(QString::fromUtf8("border: 2px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
-"    background-color: rgba(255, 255, 255, 200); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    background-color: rgba(255, 255, 255, 100); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
@@ -185,7 +185,7 @@ public:
     void retranslateUi(QMainWindow *LoginWindow)
     {
         LoginWindow->setWindowTitle(QCoreApplication::translate("LoginWindow", "MainWindow", nullptr));
-        label->setText(QCoreApplication::translate("LoginWindow", "<html><head/><body><p><img src=\":/gif1.gif\"/></p></body></html>", nullptr));
+        label->setText(QCoreApplication::translate("LoginWindow", "<html><head/><body><p><img src=\":/login.jpeg\"/></p></body></html>", nullptr));
         pushButton_1->setText(QCoreApplication::translate("LoginWindow", "1", nullptr));
         pushButton_2->setText(QCoreApplication::translate("LoginWindow", "2", nullptr));
         pushButton_4->setText(QCoreApplication::translate("LoginWindow", "4", nullptr));

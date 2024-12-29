@@ -69,7 +69,7 @@ public:
         label->setFont(font);
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(70, 90, 81, 61));
+        label_2->setGeometry(QRect(10, 90, 191, 61));
         QFont font1;
         font1.setPointSize(16);
         label_2->setFont(font1);
@@ -81,7 +81,7 @@ public:
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(70, 160, 81, 61));
+        label_3->setGeometry(QRect(10, 160, 201, 61));
         label_3->setFont(font1);
         ID = new QTextEdit(centralwidget);
         ID->setObjectName(QString::fromUtf8("ID"));
@@ -91,7 +91,7 @@ public:
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         label_4 = new QLabel(centralwidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(70, 240, 81, 61));
+        label_4->setGeometry(QRect(10, 240, 181, 61));
         label_4->setFont(font1);
         roomtype = new QComboBox(centralwidget);
         roomtype->setObjectName(QString::fromUtf8("roomtype"));
@@ -114,7 +114,7 @@ public:
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(70, 310, 81, 61));
+        label_5->setGeometry(QRect(10, 310, 201, 61));
         label_5->setFont(font1);
         phonenumber = new QTextEdit(centralwidget);
         phonenumber->setObjectName(QString::fromUtf8("phonenumber"));

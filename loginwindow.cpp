@@ -22,12 +22,10 @@ LoginWindow::LoginWindow(QWidget *parent)
     ui->setupUi(this);
 
     sqlite_Init();
-    /* QMovie *movie=new QMovie(":/gif1.gif");
-    ui->label->setMovie(movie);
-    movie->start();
+
     QMovie *movie1=new QMovie(":/gif5.gif");
     ui->label_2->setMovie(movie1);
-    movie1->start();*/
+    movie1->start();
 }
 
 LoginWindow::~LoginWindow()

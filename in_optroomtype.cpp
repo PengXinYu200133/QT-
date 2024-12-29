@@ -109,7 +109,7 @@ void in_optroomtype::on_pushButton_clicked()
     QModelIndex index = ui->tableView->currentIndex(); // 获取当前选中的索引
     if (!index.isValid()) {
         QMessageBox::warning(this, "警告", "请选择一个房间！");
-        return;
+
     }
     QString roomId = model->data(model->index(index.row(), 0)).toString(); // 获取第1列（RoomID）的数据
     qDebug() << "准备发送房间号到串口：" << roomId;
@@ -121,7 +121,7 @@ void in_optroomtype::on_pushButton_clicked()
         if (bytesWritten == -1) {
             qDebug() << "数据发送失败：" << serial->errorString();
             QMessageBox::information(this, "串口错误", "数据发送失败！");
-            return;
+
         } else {
             qDebug() << "数据发送成功：" << sendData;
         }
@@ -135,7 +135,7 @@ void in_optroomtype::handleSerialData()
 {
     if (!serial || !serial->isOpen()) {
         qDebug() << "串口未打开，无法接收数据";
-        return;
+
     }
 
     QByteArray receivedData = serial->readAll(); // 读取串口数据
@@ -147,7 +147,7 @@ void in_optroomtype::handleSerialData()
         QSqlDatabase db = QSqlDatabase::database("in_optroomtype");
         if (!db.isOpen()) {
             qDebug() << "数据库未打开";
-            return;
+
         }
 
         QString name = m_date[0];
@@ -193,10 +193,7 @@ void in_optroomtype::handleSerialData()
             QMessageBox::information(this, "错误", "数据插入失败！");
         }
     } else {
-        if (serial && serial->isOpen()) {
-            serial->close(); // 关闭串口
-            qDebug() << "串口已关闭（串口返回数据无效）";
-        }
+
         QMessageBox::warning(this, "错误", "串口返回数据无效！请先去退卡");
     }
 }

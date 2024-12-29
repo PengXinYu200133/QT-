@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.setFont(QFont("Microsoft Yahei", 9));
-
+    a.setOverrideCursor(Qt::BlankCursor);
 // 设置中文编码
 #if (QT_VERSION <= QT_VERSION_CHECK(5, 0, 0))
     QTextCodec *codec = QTextCodec::codecForName("GBK");

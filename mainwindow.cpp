@@ -4,7 +4,7 @@
 #include "reservation.h"
 #include "report_the_loss_of.h"
 #include "check_out.h"
-#include "wifiset.h"
+
 #include "esp8266.h"  // 包含ESP8266头文件
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -273,31 +273,69 @@ void MainWindow::on_pushButton_continue_2_clicked()
     p->show();
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
 
-    wifiset *p = new wifiset();
-    p->show();
-}
-
-void MainWindow::on_available_room_clicked()
-{
-
-}
-
-
-void MainWindow::on_label_2_linkActivated(const QString &link)//大床房
-{
-    // link 参数是超链接的地址 (href)
-    qDebug() << "用户点击了超链接，链接是：" << link;
-    available_room_list *p = new available_room_list();
-    p->show();
-}
 
 
 void MainWindow::on_available_bigroom_clicked()
 {
-    available_room_list *p = new available_room_list();
+    QString roomtype="大床房";
+    available_room_list *p = new available_room_list(roomtype);
+    p->show();
+}
+
+
+void MainWindow::on_available_tvroom_clicked()//电影房
+{
+    QString roomtype="电影房";
+    available_room_list *p = new available_room_list(roomtype);
+    p->show();
+}
+
+
+void MainWindow::on_available_jimafang_clicked()//机麻房
+{
+    QString roomtype="机麻房";
+    available_room_list *p = new available_room_list(roomtype);
+    p->show();
+}
+
+
+void MainWindow::on_available_one_clicked()//普通单人间
+{
+    QString roomtype="普通单人间";
+    available_room_list *p = new available_room_list(roomtype);
+    p->show();
+}
+
+
+void MainWindow::on_available_double_clicked()//普通双人间
+{
+    QString roomtype="普通双人间";
+    available_room_list *p = new available_room_list(roomtype);
+    p->show();
+}
+
+
+void MainWindow::on_available_rowbedroom_clicked()//双床房
+{
+    QString roomtype="双床房";
+    available_room_list *p = new available_room_list(roomtype);
+    p->show();
+}
+
+
+void MainWindow::on_available_xingzhengfang_clicked()//行政房
+{
+    QString roomtype="行政房";
+    available_room_list *p = new available_room_list(roomtype);
+    p->show();
+}
+
+
+void MainWindow::on_available_zongtongtaof_clicked()//总统套房
+{
+    QString roomtype="总统套房";
+    available_room_list *p = new available_room_list(roomtype);
     p->show();
 }
 

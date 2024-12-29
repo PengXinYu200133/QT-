@@ -451,9 +451,9 @@ border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>10</x>
       <y>90</y>
-      <width>101</width>
+      <width>181</width>
       <height>61</height>
      </rect>
     </property>
@@ -469,9 +469,9 @@ border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>10</x>
       <y>190</y>
-      <width>101</width>
+      <width>151</width>
       <height>61</height>
      </rect>
     </property>

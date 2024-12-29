@@ -63,10 +63,10 @@ SOURCES       = available_room_list.cpp \
 		mainwindow.cpp \
 		newroom.cpp \
 		quick_check_in.cpp \
+		quick_reservation.cpp \
 		report_the_loss_of.cpp \
 		reservation.cpp \
-		reservation_list.cpp \
-		wifiset.cpp qrc_image.cpp \
+		reservation_list.cpp qrc_image.cpp \
 		moc_available_room_list.cpp \
 		moc_card_replacement.cpp \
 		moc_check_out.cpp \
@@ -77,10 +77,10 @@ SOURCES       = available_room_list.cpp \
 		moc_mainwindow.cpp \
 		moc_newroom.cpp \
 		moc_quick_check_in.cpp \
+		moc_quick_reservation.cpp \
 		moc_report_the_loss_of.cpp \
 		moc_reservation.cpp \
-		moc_reservation_list.cpp \
-		moc_wifiset.cpp
+		moc_reservation_list.cpp
 OBJECTS       = available_room_list.o \
 		card_replacement.o \
 		check_out.o \
@@ -92,10 +92,10 @@ OBJECTS       = available_room_list.o \
 		mainwindow.o \
 		newroom.o \
 		quick_check_in.o \
+		quick_reservation.o \
 		report_the_loss_of.o \
 		reservation.o \
 		reservation_list.o \
-		wifiset.o \
 		qrc_image.o \
 		moc_available_room_list.o \
 		moc_card_replacement.o \
@@ -107,10 +107,10 @@ OBJECTS       = available_room_list.o \
 		moc_mainwindow.o \
 		moc_newroom.o \
 		moc_quick_check_in.o \
+		moc_quick_reservation.o \
 		moc_report_the_loss_of.o \
 		moc_reservation.o \
-		moc_reservation_list.o \
-		moc_wifiset.o
+		moc_reservation_list.o
 DIST          = /usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/features/spec_pre.prf \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/common/unix.conf \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/common/linux.conf \
@@ -311,10 +311,10 @@ DIST          = /usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5
 		mainwindow.h \
 		newroom.h \
 		quick_check_in.h \
+		quick_reservation.h \
 		report_the_loss_of.h \
 		reservation.h \
-		reservation_list.h \
-		wifiset.h available_room_list.cpp \
+		reservation_list.h available_room_list.cpp \
 		card_replacement.cpp \
 		check_out.cpp \
 		esp8266.cpp \
@@ -325,10 +325,10 @@ DIST          = /usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5
 		mainwindow.cpp \
 		newroom.cpp \
 		quick_check_in.cpp \
+		quick_reservation.cpp \
 		report_the_loss_of.cpp \
 		reservation.cpp \
-		reservation_list.cpp \
-		wifiset.cpp
+		reservation_list.cpp
 QMAKE_TARGET  = test
 DESTDIR       = 
 TARGET        = test
@@ -337,7 +337,7 @@ TARGET        = test
 first: all
 ####### Build rules
 
-test: ui_available_room_list.h ui_card_replacement.h ui_check_out.h ui_in.h ui_in_optroomtype.h ui_loginwindow.h ui_mainwindow.h ui_newroom.h ui_quick_check_in.h ui_report_the_loss_of.h ui_reservation.h ui_reservation_list.h ui_wifiset.h $(OBJECTS)  
+test: ui_available_room_list.h ui_card_replacement.h ui_check_out.h ui_in.h ui_in_optroomtype.h ui_loginwindow.h ui_mainwindow.h ui_newroom.h ui_quick_check_in.h ui_quick_reservation.h ui_report_the_loss_of.h ui_reservation.h ui_reservation_list.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: test.pro /usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/linux-arm-gnueabi-g++/qmake.conf /usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/features/spec_pre.prf \
@@ -741,9 +741,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents image.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents available_room_list.h card_replacement.h check_out.h esp8266.h in.h in_optroomtype.h loginwindow.h mainwindow.h newroom.h quick_check_in.h report_the_loss_of.h reservation.h reservation_list.h wifiset.h $(DISTDIR)/
-	$(COPY_FILE) --parents available_room_list.cpp card_replacement.cpp check_out.cpp esp8266.cpp in.cpp in_optroomtype.cpp loginwindow.cpp main.cpp mainwindow.cpp newroom.cpp quick_check_in.cpp report_the_loss_of.cpp reservation.cpp reservation_list.cpp wifiset.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents available_room_list.ui card_replacement.ui check_out.ui in.ui in_optroomtype.ui loginwindow.ui mainwindow.ui newroom.ui quick_check_in.ui report_the_loss_of.ui reservation.ui reservation_list.ui wifiset.ui $(DISTDIR)/
+	$(COPY_FILE) --parents available_room_list.h card_replacement.h check_out.h esp8266.h in.h in_optroomtype.h loginwindow.h mainwindow.h newroom.h quick_check_in.h quick_reservation.h report_the_loss_of.h reservation.h reservation_list.h $(DISTDIR)/
+	$(COPY_FILE) --parents available_room_list.cpp card_replacement.cpp check_out.cpp esp8266.cpp in.cpp in_optroomtype.cpp loginwindow.cpp main.cpp mainwindow.cpp newroom.cpp quick_check_in.cpp quick_reservation.cpp report_the_loss_of.cpp reservation.cpp reservation_list.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents available_room_list.ui card_replacement.ui check_out.ui in.ui in_optroomtype.ui loginwindow.ui mainwindow.ui newroom.ui quick_check_in.ui quick_reservation.ui report_the_loss_of.ui reservation.ui reservation_list.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -776,6 +776,7 @@ qrc_image.cpp: image.qrc \
 		scf.jpg \
 		gif5.gif \
 		ps.jpg \
+		login.jpeg \
 		jmf.jpg \
 		gif4.gif \
 		dyf.jpg \
@@ -789,9 +790,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/features/data/dummy.cpp
 	/usr/local/arm/5.4.0/usr/bin/arm-linux-g++ -pipe --sysroot=/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot -O2 -fPIC -std=gnu++1z -Wall -Wextra -dM -E -o moc_predefs.h /usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_available_room_list.cpp moc_card_replacement.cpp moc_check_out.cpp moc_esp8266.cpp moc_in.cpp moc_in_optroomtype.cpp moc_loginwindow.cpp moc_mainwindow.cpp moc_newroom.cpp moc_quick_check_in.cpp moc_report_the_loss_of.cpp moc_reservation.cpp moc_reservation_list.cpp moc_wifiset.cpp
+compiler_moc_header_make_all: moc_available_room_list.cpp moc_card_replacement.cpp moc_check_out.cpp moc_esp8266.cpp moc_in.cpp moc_in_optroomtype.cpp moc_loginwindow.cpp moc_mainwindow.cpp moc_newroom.cpp moc_quick_check_in.cpp moc_quick_reservation.cpp moc_report_the_loss_of.cpp moc_reservation.cpp moc_reservation_list.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_available_room_list.cpp moc_card_replacement.cpp moc_check_out.cpp moc_esp8266.cpp moc_in.cpp moc_in_optroomtype.cpp moc_loginwindow.cpp moc_mainwindow.cpp moc_newroom.cpp moc_quick_check_in.cpp moc_report_the_loss_of.cpp moc_reservation.cpp moc_reservation_list.cpp moc_wifiset.cpp
+	-$(DEL_FILE) moc_available_room_list.cpp moc_card_replacement.cpp moc_check_out.cpp moc_esp8266.cpp moc_in.cpp moc_in_optroomtype.cpp moc_loginwindow.cpp moc_mainwindow.cpp moc_newroom.cpp moc_quick_check_in.cpp moc_quick_reservation.cpp moc_report_the_loss_of.cpp moc_reservation.cpp moc_reservation_list.cpp
 moc_available_room_list.cpp: available_room_list.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/QMainWindow \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qmainwindow.h \
@@ -1929,6 +1930,117 @@ moc_quick_check_in.cpp: quick_check_in.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/moc
 	/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/moc $(DEFINES) --include /mnt/hgfs/aGraduationDesign/qt/porject/RFID-project/test/QT-/QT-/moc_predefs.h -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/linux-arm-gnueabi-g++ -I/mnt/hgfs/aGraduationDesign/qt/porject/RFID-project/test/QT-/QT- -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0 -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0/arm-none-linux-gnueabi -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0/backward -I/usr/local/arm/5.4.0/usr/lib/gcc/arm-none-linux-gnueabi/5.4.0/include -I/usr/local/arm/5.4.0/usr/lib/gcc/arm-none-linux-gnueabi/5.4.0/include-fixed -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/usr/include quick_check_in.h -o moc_quick_check_in.cpp
 
+moc_quick_reservation.cpp: quick_reservation.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/QMainWindow \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qmainwindow.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtwidgetsglobal.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtguiglobal.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qglobal.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qconfig-bootstrapped.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qconfig.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtcore-config.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsystemdetection.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qprocessordetection.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcompilerdetection.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtypeinfo.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsysinfo.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlogging.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qflags.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbasicatomic.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_bootstrap.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qgenericatomic.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_cxx11.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_msvc.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qglobalstatic.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmutex.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qnumeric.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qversiontagging.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtgui-config.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtwidgets-config.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qwidget.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qwindowdefs.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobjectdefs.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qnamespace.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobjectdefs_impl.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qwindowdefs_win.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobject.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstring.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qchar.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbytearray.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qrefcount.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qarraydata.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringliteral.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringalgorithms.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringview.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringbuilder.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlist.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qalgorithms.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qiterator.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qhashfunctions.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qpair.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvector.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontainertools_impl.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qpoint.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbytearraylist.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringlist.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qregexp.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringmatcher.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcoreevent.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qscopedpointer.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmetatype.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvarlengtharray.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontainerfwd.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobject_impl.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmargins.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpaintdevice.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qrect.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsize.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpalette.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qcolor.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qrgb.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qrgba64.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qbrush.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qmatrix.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpolygon.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qregion.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdatastream.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qiodevice.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qline.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtransform.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qimage.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpixelformat.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpixmap.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsharedpointer.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qshareddata.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qhash.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsharedpointer_impl.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfont.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfontmetrics.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfontinfo.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qsizepolicy.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qcursor.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qkeysequence.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qevent.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvariant.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmap.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdebug.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtextstream.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlocale.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qset.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontiguouscache.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qurl.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qurlquery.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qfile.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qfiledevice.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qvector2d.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtouchdevice.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtabwidget.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qicon.h \
+		moc_predefs.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/moc
+	/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/moc $(DEFINES) --include /mnt/hgfs/aGraduationDesign/qt/porject/RFID-project/test/QT-/QT-/moc_predefs.h -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/linux-arm-gnueabi-g++ -I/mnt/hgfs/aGraduationDesign/qt/porject/RFID-project/test/QT-/QT- -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0 -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0/arm-none-linux-gnueabi -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0/backward -I/usr/local/arm/5.4.0/usr/lib/gcc/arm-none-linux-gnueabi/5.4.0/include -I/usr/local/arm/5.4.0/usr/lib/gcc/arm-none-linux-gnueabi/5.4.0/include-fixed -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/usr/include quick_reservation.h -o moc_quick_reservation.cpp
+
 moc_report_the_loss_of.cpp: report_the_loss_of.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/QMainWindow \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qmainwindow.h \
@@ -2301,124 +2413,13 @@ moc_reservation_list.cpp: reservation_list.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/moc
 	/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/moc $(DEFINES) --include /mnt/hgfs/aGraduationDesign/qt/porject/RFID-project/test/QT-/QT-/moc_predefs.h -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/linux-arm-gnueabi-g++ -I/mnt/hgfs/aGraduationDesign/qt/porject/RFID-project/test/QT-/QT- -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0 -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0/arm-none-linux-gnueabi -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0/backward -I/usr/local/arm/5.4.0/usr/lib/gcc/arm-none-linux-gnueabi/5.4.0/include -I/usr/local/arm/5.4.0/usr/lib/gcc/arm-none-linux-gnueabi/5.4.0/include-fixed -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/usr/include reservation_list.h -o moc_reservation_list.cpp
 
-moc_wifiset.cpp: wifiset.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/QMainWindow \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qmainwindow.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtwidgetsglobal.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtguiglobal.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qglobal.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qconfig-bootstrapped.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qconfig.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtcore-config.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsystemdetection.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qprocessordetection.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcompilerdetection.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtypeinfo.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsysinfo.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlogging.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qflags.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbasicatomic.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_bootstrap.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qgenericatomic.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_cxx11.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_msvc.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qglobalstatic.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmutex.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qnumeric.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qversiontagging.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtgui-config.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtwidgets-config.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qwidget.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qwindowdefs.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobjectdefs.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qnamespace.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobjectdefs_impl.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qwindowdefs_win.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobject.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstring.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qchar.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbytearray.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qrefcount.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qarraydata.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringliteral.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringalgorithms.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringview.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringbuilder.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlist.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qalgorithms.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qiterator.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qhashfunctions.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qpair.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvector.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontainertools_impl.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qpoint.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbytearraylist.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringlist.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qregexp.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringmatcher.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcoreevent.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qscopedpointer.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmetatype.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvarlengtharray.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontainerfwd.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobject_impl.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmargins.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpaintdevice.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qrect.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsize.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpalette.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qcolor.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qrgb.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qrgba64.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qbrush.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qmatrix.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpolygon.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qregion.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdatastream.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qiodevice.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qline.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtransform.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qimage.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpixelformat.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpixmap.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsharedpointer.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qshareddata.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qhash.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsharedpointer_impl.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfont.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfontmetrics.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfontinfo.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qsizepolicy.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qcursor.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qkeysequence.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qevent.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvariant.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmap.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdebug.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtextstream.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlocale.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qset.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontiguouscache.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qurl.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qurlquery.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qfile.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qfiledevice.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qvector2d.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtouchdevice.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtabwidget.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qicon.h \
-		moc_predefs.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/moc
-	/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/moc $(DEFINES) --include /mnt/hgfs/aGraduationDesign/qt/porject/RFID-project/test/QT-/QT-/moc_predefs.h -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/mkspecs/linux-arm-gnueabi-g++ -I/mnt/hgfs/aGraduationDesign/qt/porject/RFID-project/test/QT-/QT- -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0 -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0/arm-none-linux-gnueabi -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include/c++/5.4.0/backward -I/usr/local/arm/5.4.0/usr/lib/gcc/arm-none-linux-gnueabi/5.4.0/include -I/usr/local/arm/5.4.0/usr/lib/gcc/arm-none-linux-gnueabi/5.4.0/include-fixed -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/include -I/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/usr/include wifiset.h -o moc_wifiset.cpp
-
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_available_room_list.h ui_card_replacement.h ui_check_out.h ui_in.h ui_in_optroomtype.h ui_loginwindow.h ui_mainwindow.h ui_newroom.h ui_quick_check_in.h ui_report_the_loss_of.h ui_reservation.h ui_reservation_list.h ui_wifiset.h
+compiler_uic_make_all: ui_available_room_list.h ui_card_replacement.h ui_check_out.h ui_in.h ui_in_optroomtype.h ui_loginwindow.h ui_mainwindow.h ui_newroom.h ui_quick_check_in.h ui_quick_reservation.h ui_report_the_loss_of.h ui_reservation.h ui_reservation_list.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_available_room_list.h ui_card_replacement.h ui_check_out.h ui_in.h ui_in_optroomtype.h ui_loginwindow.h ui_mainwindow.h ui_newroom.h ui_quick_check_in.h ui_report_the_loss_of.h ui_reservation.h ui_reservation_list.h ui_wifiset.h
+	-$(DEL_FILE) ui_available_room_list.h ui_card_replacement.h ui_check_out.h ui_in.h ui_in_optroomtype.h ui_loginwindow.h ui_mainwindow.h ui_newroom.h ui_quick_check_in.h ui_quick_reservation.h ui_report_the_loss_of.h ui_reservation.h ui_reservation_list.h
 ui_available_room_list.h: available_room_list.ui \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic
 	/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic available_room_list.ui -o ui_available_room_list.h
@@ -2455,6 +2456,10 @@ ui_quick_check_in.h: quick_check_in.ui \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic
 	/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic quick_check_in.ui -o ui_quick_check_in.h
 
+ui_quick_reservation.h: quick_reservation.ui \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic
+	/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic quick_reservation.ui -o ui_quick_reservation.h
+
 ui_report_the_loss_of.h: report_the_loss_of.ui \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic
 	/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic report_the_loss_of.ui -o ui_report_the_loss_of.h
@@ -2466,10 +2471,6 @@ ui_reservation.h: reservation.ui \
 ui_reservation_list.h: reservation_list.ui \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic
 	/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic reservation_list.ui -o ui_reservation_list.h
-
-ui_wifiset.h: wifiset.ui \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic
-	/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/bin/uic wifiset.ui -o ui_wifiset.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -2608,7 +2609,8 @@ available_room_list.o: available_room_list.cpp available_room_list.h \
 		quick_check_in.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort/QSerialPort \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort/qserialport.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort/qserialportglobal.h
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort/qserialportglobal.h \
+		quick_reservation.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o available_room_list.o available_room_list.cpp
 
 card_replacement.o: card_replacement.cpp card_replacement.h \
@@ -3692,7 +3694,6 @@ mainwindow.o: mainwindow.cpp in.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qmessagebox.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qdialog.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QDebug \
-		wifiset.h \
 		esp8266.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QObject \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QString \
@@ -4036,6 +4037,152 @@ quick_check_in.o: quick_check_in.cpp quick_check_in.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpen.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/QMouseEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o quick_check_in.o quick_check_in.cpp
+
+quick_reservation.o: quick_reservation.cpp quick_reservation.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/QMainWindow \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qmainwindow.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtwidgetsglobal.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtguiglobal.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qglobal.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qconfig-bootstrapped.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qconfig.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtcore-config.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsystemdetection.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qprocessordetection.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcompilerdetection.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtypeinfo.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsysinfo.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlogging.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qflags.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbasicatomic.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_bootstrap.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qgenericatomic.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_cxx11.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_msvc.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qglobalstatic.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmutex.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qnumeric.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qversiontagging.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtgui-config.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtwidgets-config.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qwidget.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qwindowdefs.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobjectdefs.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qnamespace.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobjectdefs_impl.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qwindowdefs_win.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobject.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstring.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qchar.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbytearray.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qrefcount.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qarraydata.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringliteral.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringalgorithms.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringview.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringbuilder.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlist.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qalgorithms.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qiterator.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qhashfunctions.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qpair.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvector.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontainertools_impl.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qpoint.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbytearraylist.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringlist.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qregexp.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringmatcher.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcoreevent.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qscopedpointer.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmetatype.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvarlengtharray.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontainerfwd.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobject_impl.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmargins.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpaintdevice.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qrect.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsize.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpalette.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qcolor.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qrgb.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qrgba64.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qbrush.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qmatrix.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpolygon.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qregion.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdatastream.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qiodevice.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qline.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtransform.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qimage.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpixelformat.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpixmap.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsharedpointer.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qshareddata.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qhash.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsharedpointer_impl.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfont.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfontmetrics.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfontinfo.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qsizepolicy.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qcursor.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qkeysequence.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qevent.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvariant.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmap.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdebug.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtextstream.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlocale.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qset.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontiguouscache.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qurl.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qurlquery.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qfile.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qfiledevice.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qvector2d.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtouchdevice.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtabwidget.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qicon.h \
+		ui_quick_reservation.h \
+		reservation.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/QTextEdit \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtextedit.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qabstractscrollarea.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qframe.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtextdocument.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtextoption.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtextcursor.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtextformat.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpen.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/QMouseEvent \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QDebug \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql/QSqlDatabase \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql/qsqldatabase.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql/qtsqlglobal.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql/qtsql-config.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql/QSqlQuery \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql/qsqlquery.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql/QSqlError \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSql/qsqlerror.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/QMessageBox \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qmessagebox.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qdialog.h \
+		mainwindow.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QThread \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qthread.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdeadlinetimer.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qelapsedtimer.h \
+		esp8266.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QObject \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort/QSerialPort \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort/qserialport.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort/qserialportglobal.h \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QString \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QDateTime \
+		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdatetime.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o quick_reservation.o quick_reservation.cpp
 
 report_the_loss_of.o: report_the_loss_of.cpp report_the_loss_of.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/QMainWindow \
@@ -4501,130 +4648,6 @@ reservation_list.o: reservation_list.cpp reservation_list.h \
 		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/QMouseEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reservation_list.o reservation_list.cpp
 
-wifiset.o: wifiset.cpp wifiset.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/QMainWindow \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qmainwindow.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtwidgetsglobal.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtguiglobal.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qglobal.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qconfig-bootstrapped.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qconfig.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtcore-config.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsystemdetection.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qprocessordetection.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcompilerdetection.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtypeinfo.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsysinfo.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlogging.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qflags.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbasicatomic.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_bootstrap.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qgenericatomic.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_cxx11.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qatomic_msvc.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qglobalstatic.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmutex.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qnumeric.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qversiontagging.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtgui-config.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtwidgets-config.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qwidget.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qwindowdefs.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobjectdefs.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qnamespace.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobjectdefs_impl.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qwindowdefs_win.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobject.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstring.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qchar.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbytearray.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qrefcount.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qarraydata.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringliteral.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringalgorithms.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringview.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringbuilder.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlist.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qalgorithms.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qiterator.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qhashfunctions.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qpair.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvector.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontainertools_impl.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qpoint.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qbytearraylist.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringlist.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qregexp.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qstringmatcher.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcoreevent.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qscopedpointer.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmetatype.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvarlengtharray.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontainerfwd.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qobject_impl.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmargins.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpaintdevice.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qrect.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsize.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpalette.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qcolor.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qrgb.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qrgba64.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qbrush.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qmatrix.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpolygon.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qregion.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdatastream.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qiodevice.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qline.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtransform.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qimage.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpixelformat.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qpixmap.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsharedpointer.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qshareddata.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qhash.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qsharedpointer_impl.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfont.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfontmetrics.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qfontinfo.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qsizepolicy.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qcursor.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qkeysequence.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qevent.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qvariant.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qmap.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdebug.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qtextstream.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qlocale.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qset.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qcontiguouscache.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qurl.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qurlquery.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qfile.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qfiledevice.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qvector2d.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qtouchdevice.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtWidgets/qtabwidget.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtGui/qicon.h \
-		ui_wifiset.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QDebug \
-		mainwindow.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QThread \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qthread.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdeadlinetimer.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qelapsedtimer.h \
-		esp8266.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QObject \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort/QSerialPort \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort/qserialport.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtSerialPort/qserialportglobal.h \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QString \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/QDateTime \
-		/usr/local/arm/5.4.0/usr/arm-none-linux-gnueabi/sysroot/opt/qt-5.15.10/include/QtCore/qdatetime.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wifiset.o wifiset.cpp
-
 qrc_image.o: qrc_image.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_image.o qrc_image.cpp
 
@@ -4658,6 +4681,9 @@ moc_newroom.o: moc_newroom.cpp
 moc_quick_check_in.o: moc_quick_check_in.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_quick_check_in.o moc_quick_check_in.cpp
 
+moc_quick_reservation.o: moc_quick_reservation.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_quick_reservation.o moc_quick_reservation.cpp
+
 moc_report_the_loss_of.o: moc_report_the_loss_of.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_report_the_loss_of.o moc_report_the_loss_of.cpp
 
@@ -4666,9 +4692,6 @@ moc_reservation.o: moc_reservation.cpp
 
 moc_reservation_list.o: moc_reservation_list.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_reservation_list.o moc_reservation_list.cpp
-
-moc_wifiset.o: moc_wifiset.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_wifiset.o moc_wifiset.cpp
 
 ####### Install
 

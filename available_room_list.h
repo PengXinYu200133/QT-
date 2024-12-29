@@ -12,7 +12,7 @@ class available_room_list : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit available_room_list(QWidget *parent = nullptr);
+    explicit available_room_list(QString roomname,QWidget *parent = nullptr);
     ~available_room_list();
 
 private slots:
@@ -24,10 +24,11 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::available_room_list *ui;
     QStandardItemModel *model; // 用于管理 QTableView 的数据
-
 
 };
 

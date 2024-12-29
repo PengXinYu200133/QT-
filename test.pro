@@ -22,10 +22,10 @@ SOURCES += \
     mainwindow.cpp \
     newroom.cpp \
     quick_check_in.cpp \
+    quick_reservation.cpp \
     report_the_loss_of.cpp \
     reservation.cpp \
-    reservation_list.cpp \
-    wifiset.cpp
+    reservation_list.cpp
 
 HEADERS += \
     available_room_list.h \
@@ -38,10 +38,10 @@ HEADERS += \
     mainwindow.h \
     newroom.h \
     quick_check_in.h \
+    quick_reservation.h \
     report_the_loss_of.h \
     reservation.h \
-    reservation_list.h \
-    wifiset.h
+    reservation_list.h
 
 FORMS += \
     available_room_list.ui \
@@ -53,10 +53,10 @@ FORMS += \
     mainwindow.ui \
     newroom.ui \
     quick_check_in.ui \
+    quick_reservation.ui \
     report_the_loss_of.ui \
     reservation.ui \
-    reservation_list.ui \
-    wifiset.ui
+    reservation_list.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
