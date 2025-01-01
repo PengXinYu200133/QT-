@@ -47,6 +47,7 @@ public:
     QPushButton *pushButton_12;
     QPushButton *new_2;
     QPushButton *pushButton_search;
+    QPushButton *pushButton_13;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *reservation_list)
@@ -71,13 +72,13 @@ public:
         label->setFont(font);
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(410, 90, 101, 51));
+        pushButton->setGeometry(QRect(370, 90, 101, 51));
         pushButton->setStyleSheet(QString::fromUtf8("border: 2px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    background-color: rgba(255, 255, 255, 200); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         numberinput = new QTextEdit(centralwidget);
         numberinput->setObjectName(QString::fromUtf8("numberinput"));
-        numberinput->setGeometry(QRect(40, 90, 241, 51));
+        numberinput->setGeometry(QRect(0, 90, 241, 51));
         numberinput->setStyleSheet(QString::fromUtf8("border: 2px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    background-color: rgba(255, 255, 255, 200); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
@@ -171,20 +172,26 @@ public:
         pushButton_11->setGeometry(QRect(130, 210, 51, 51));
         pushButton_12 = new QPushButton(centralwidget);
         pushButton_12->setObjectName(QString::fromUtf8("pushButton_12"));
-        pushButton_12->setGeometry(QRect(660, 90, 101, 51));
+        pushButton_12->setGeometry(QRect(700, 90, 101, 51));
         pushButton_12->setStyleSheet(QString::fromUtf8("border: 2px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    background-color: rgba(255, 255, 255, 200); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         new_2 = new QPushButton(centralwidget);
         new_2->setObjectName(QString::fromUtf8("new_2"));
-        new_2->setGeometry(QRect(530, 90, 101, 51));
+        new_2->setGeometry(QRect(480, 90, 101, 51));
         new_2->setStyleSheet(QString::fromUtf8("border: 2px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    background-color: rgba(255, 255, 255, 200); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         pushButton_search = new QPushButton(centralwidget);
         pushButton_search->setObjectName(QString::fromUtf8("pushButton_search"));
-        pushButton_search->setGeometry(QRect(300, 90, 91, 51));
+        pushButton_search->setGeometry(QRect(270, 90, 91, 51));
         pushButton_search->setStyleSheet(QString::fromUtf8("border: 2px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    background-color: rgba(255, 255, 255, 200); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
+        pushButton_13 = new QPushButton(centralwidget);
+        pushButton_13->setObjectName(QString::fromUtf8("pushButton_13"));
+        pushButton_13->setGeometry(QRect(590, 90, 101, 51));
+        pushButton_13->setStyleSheet(QString::fromUtf8("border: 2px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    background-color: rgba(255, 255, 255, 200); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         reservation_list->setCentralWidget(centralwidget);
@@ -217,6 +224,7 @@ public:
         pushButton_12->setText(QCoreApplication::translate("reservation_list", "\350\277\224\345\233\236", nullptr));
         new_2->setText(QCoreApplication::translate("reservation_list", "\346\226\260\345\242\236\351\242\204\347\272\246", nullptr));
         pushButton_search->setText(QCoreApplication::translate("reservation_list", "\346\237\245\350\257\242", nullptr));
+        pushButton_13->setText(QCoreApplication::translate("reservation_list", "\345\217\226\346\266\210\351\242\204\347\272\246", nullptr));
     } // retranslateUi
 
 };

@@ -34,10 +34,12 @@ public:
     QLabel *label_5;
     QTextEdit *out_time;
     QTextEdit *in_time;
-    QLabel *price;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QFrame *frame;
+    QLabel *daysStayed;
+    QLabel *roomtype;
+    QLabel *totalPrice;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *check_out)
@@ -96,9 +98,6 @@ public:
         in_time->setStyleSheet(QString::fromUtf8("border: 2px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    background-color: rgba(255, 255, 255, 200); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
-        price = new QLabel(centralwidget);
-        price->setObjectName(QString::fromUtf8("price"));
-        price->setGeometry(QRect(570, 70, 171, 91));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(520, 340, 111, 71));
@@ -119,6 +118,15 @@ public:
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
+        daysStayed = new QLabel(frame);
+        daysStayed->setObjectName(QString::fromUtf8("daysStayed"));
+        daysStayed->setGeometry(QRect(630, 20, 171, 41));
+        roomtype = new QLabel(frame);
+        roomtype->setObjectName(QString::fromUtf8("roomtype"));
+        roomtype->setGeometry(QRect(630, 70, 171, 41));
+        totalPrice = new QLabel(frame);
+        totalPrice->setObjectName(QString::fromUtf8("totalPrice"));
+        totalPrice->setGeometry(QRect(630, 130, 171, 41));
         check_out->setCentralWidget(centralwidget);
         frame->raise();
         label->raise();
@@ -130,7 +138,6 @@ public:
         label_5->raise();
         out_time->raise();
         in_time->raise();
-        price->raise();
         pushButton->raise();
         pushButton_2->raise();
         statusbar = new QStatusBar(check_out);
@@ -150,9 +157,11 @@ public:
         label_3->setText(QCoreApplication::translate("check_out", "<html><head/><body><p><span style=\" font-size:12pt;\">\346\210\277  \351\227\264  \345\217\267\357\274\232</span></p></body></html>", nullptr));
         label_4->setText(QCoreApplication::translate("check_out", "<html><head/><body><p><span style=\" font-size:12pt;\">\345\205\245\344\275\217\346\227\266\351\227\264\357\274\232</span></p></body></html>", nullptr));
         label_5->setText(QCoreApplication::translate("check_out", "<html><head/><body><p><span style=\" font-size:12pt;\">\351\200\200\346\210\277\346\227\266\351\227\264\357\274\232</span></p></body></html>", nullptr));
-        price->setText(QCoreApplication::translate("check_out", "\345\205\245\344\275\217\345\244\251\346\225\260\357\274\232", nullptr));
         pushButton->setText(QCoreApplication::translate("check_out", "\347\241\256\345\256\232", nullptr));
         pushButton_2->setText(QCoreApplication::translate("check_out", "\345\217\226\346\266\210", nullptr));
+        daysStayed->setText(QString());
+        roomtype->setText(QString());
+        totalPrice->setText(QString());
     } // retranslateUi
 
 };

@@ -49,7 +49,7 @@ private slots:
     void limitPhoneNumberLength();
 
 signals:
-    void closedoor(QString &data);
+    void closedoor(QString data);
 private:
     Ui::report_the_loss_of *ui;
 };

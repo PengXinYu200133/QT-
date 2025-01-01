@@ -50,7 +50,7 @@ private slots:
     void on_queding_clicked();
     void handleSerialData();
 signals:
-    void quick_opendoor(QString &data);
+    void quick_opendoor(QString data);
 private:
     Ui::quick_check_in *ui;
     QString roomid;

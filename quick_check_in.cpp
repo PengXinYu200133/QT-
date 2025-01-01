@@ -42,7 +42,7 @@ quick_check_in::quick_check_in(QString roomid, QString roomtype,QWidget *parent)
     }
 
     // 配置串口参数
-    serial->setBaudRate(QSerialPort::Baud9600);
+    serial->setBaudRate(QSerialPort::Baud115200);
     serial->setDataBits(QSerialPort::Data8);
     serial->setParity(QSerialPort::NoParity);
     serial->setStopBits(QSerialPort::OneStop);
@@ -69,9 +69,12 @@ void quick_check_in::handleSerialData()
     QByteArray receivedData = serial->readAll(); // 读取串口数据
     QString dataString = QString::fromUtf8(receivedData); // 转换为字符串
     qDebug() << "从 CON2 接收到的数据：" << dataString;
-
+    QString dynamicPassword; // 用于存储动态密码
     // 如果收到的返回数据有效，则插入数据库
-    if (dataString.contains("OK")) {
+    // 如果收到的数据包含 "OK:" 并且后面有 16 位密码
+    if (dataString.startsWith("OK:") && dataString.length() >= 19) { // "OK:" + 16 位密码 = 至少 19 个字符
+        dynamicPassword = dataString.mid(3, 16); // 提取从第 3 个字符开始的 16 位密码
+        qDebug() << "提取到的动态密码：" << dynamicPassword;
         QSqlDatabase db = QSqlDatabase::database("quick_check_in"); // SQLite 数据库驱动
 
         if (!db.open()) {
@@ -105,8 +108,9 @@ void quick_check_in::handleSerialData()
             }
             db.close();
             delete serial;
-            QString mydata = "on:"+roomId;
-            emit quick_opendoor(mydata);
+            // 将提取到的动态密码作为信号参数
+            QString quickdata = "on:" + dynamicPassword;
+            emit quick_opendoor(quickdata);
             this->close();
 
         } else {

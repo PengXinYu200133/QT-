@@ -31,6 +31,7 @@ public:
     QPushButton *pushButton_2;
     QTableView *tableView;
     QFrame *frame;
+    QPushButton *pushButton_3;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *in_optroomtype)
@@ -73,6 +74,12 @@ public:
 "    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
+        pushButton_3 = new QPushButton(frame);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_3->setGeometry(QRect(330, 410, 141, 41));
+        pushButton_3->setStyleSheet(QString::fromUtf8("border: 2px solid rgba(0, 0, 0, 150); /* \351\273\221\350\211\262\350\276\271\346\241\206\357\274\214150\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    background-color: rgba(255, 255, 255, 200); /* \347\231\275\350\211\262\350\203\214\346\231\257\357\274\214200\344\270\272\344\270\215\351\200\217\346\230\216\345\272\246 */\n"
+"    border-radius: 10px; /* \345\234\206\350\247\222\350\276\271\346\241\206 */"));
         in_optroomtype->setCentralWidget(centralwidget);
         frame->raise();
         label->raise();
@@ -94,6 +101,7 @@ public:
         label->setText(QCoreApplication::translate("in_optroomtype", "\346\210\277\351\227\264\351\200\211\346\213\251", nullptr));
         pushButton->setText(QCoreApplication::translate("in_optroomtype", "\347\241\256\345\256\232", nullptr));
         pushButton_2->setText(QCoreApplication::translate("in_optroomtype", "\345\217\226\346\266\210", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("in_optroomtype", "\346\270\205\347\251\272\346\216\245\346\224\266\347\274\223\345\206\262\345\214\272", nullptr));
     } // retranslateUi
 
 };

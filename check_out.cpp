@@ -87,7 +87,7 @@ void check_out::connectToSerialPort()
     }
 
     // 设置串口参数
-    serial->setBaudRate(QSerialPort::Baud9600);
+    serial->setBaudRate(QSerialPort::Baud115200);
     serial->setDataBits(QSerialPort::Data8);
     serial->setParity(QSerialPort::NoParity);
     serial->setStopBits(QSerialPort::OneStop);
@@ -153,9 +153,10 @@ void check_out::processRoomNumber(const QString &roomNumber)
 
         // 设置 UI 显示信息
         ui->name->setText(name);
-        ui->out_time->setText(out_time);
-        ui->roomid->setText(room_id);
-        ui->in_time->setText(in_time);
+        ui->roomid->setText(room_id + " 号房间");
+        ui->in_time->setText("入住时间：" + in_time);
+        ui->out_time->setText("退房时间：" + out_time);
+        ui->roomtype->setText("房间类型：" + room_type);
 
         qDebug() << "查询结果：";
         qDebug() << "Name:" << name;
@@ -201,7 +202,36 @@ void check_out::processRoomNumber(const QString &roomNumber)
         qDebug() << "住宿天数:" << daysStayed;
 
         // 显示住宿天数到 UI
-        ui->price->setText(QString::number(daysStayed));
+        ui->daysStayed->setText(QString::number(daysStayed) + " 天");
+
+        // 查询房间类型对应的价格
+        QSqlQuery priceQuery(QSqlDatabase::database("check_out"));
+        priceQuery.prepare("SELECT price FROM roomtype WHERE RoomType = :room_type");
+        priceQuery.bindValue(":room_type", room_type);
+
+        if (!priceQuery.exec()) {
+            QMessageBox::critical(this, "错误", "查询房间类型价格失败：" + priceQuery.lastError().text());
+            return;
+        }
+
+        double pricePerDay = 0.0;
+        if (priceQuery.next()) {
+            pricePerDay = priceQuery.value("price").toDouble(); // 查询出的每晚价格
+        } else {
+            QMessageBox::warning(this, "警告", "未找到对应房间类型的价格：" + room_type);
+            return;
+        }
+
+        // 计算总费用
+        double totalPrice = pricePerDay * daysStayed;
+
+        qDebug() << "房间类型:" << room_type;
+        qDebug() << "每日价格:" << pricePerDay << "元";
+        qDebug() << "总费用:" << totalPrice << "元";
+
+        // 显示详细费用信息到 UI
+        ui->daysStayed->setText("房费：" + QString::number(pricePerDay, 'f', 2) + " 元/天");
+        ui->totalPrice->setText("总费用：" + QString::number(totalPrice, 'f', 2) + " 元");
 
         // 插入退房记录
         QSqlQuery insertQuery(QSqlDatabase::database("check_out"));
@@ -212,10 +242,10 @@ void check_out::processRoomNumber(const QString &roomNumber)
         insertQuery.bindValue(":room_id", room_id);
         insertQuery.bindValue(":room_type", room_type);
         insertQuery.bindValue(":out_time", out_time);
-        insertQuery.bindValue(":out_time", in_time);
+        insertQuery.bindValue(":in_time", in_time);
 
         if (!insertQuery.exec()) {
-            QMessageBox::critical(this, "错误", "房间已退：" + insertQuery.lastError().text());
+            QMessageBox::critical(this, "成功", "房间已退：" );
         } else {
             // 插入退房记录成功，更新 available_room 表的 State 字段为 0
             QSqlQuery updateQuery(QSqlDatabase::database("check_out"));
@@ -235,15 +265,14 @@ void check_out::processRoomNumber(const QString &roomNumber)
                 serial->close(); // 关闭串口
                 qDebug() << "串口已关闭（成功）";
             }
-            QString data = "off:"+room_id;
+            QString data = "off:" + room_id;
             emit closeroom(data);
-            this->close(); // 关闭当前窗口
+
         }
     } else {
         QMessageBox::warning(this, "提示", "未找到对应房间号的记录：" + roomNumber);
     }
 }
-
 
 void check_out::on_pushButton_clicked()//确认按钮
 {

@@ -31,7 +31,10 @@ reservation_list::reservation_list(QWidget *parent)
     , itemModel(new QStandardItemModel(this)) // 初始化 QStandardItemModel
 {
     ui->setupUi(this);
-
+    ui->tableView->horizontalHeader()->setStretchLastSection(true); // 自动调整列宽
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows); // 整行选择
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); // 单行选择
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); // 禁止编辑
     // 连接数据库
     if (!connectToDatabase()) {
         return;
@@ -110,10 +113,8 @@ void reservation_list::loadReservationData(const QString &phoneNumber)
     ui->tableView->setModel(itemModel);
 
     // 配置表格行为
-    ui->tableView->horizontalHeader()->setStretchLastSection(true); // 自动调整列宽
-    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows); // 整行选择
-    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); // 单行选择
-    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); // 禁止编辑
+
+
 }
 
 // 查询按钮点击事件
@@ -273,3 +274,85 @@ void reservation_list::on_pushButton_clicked() // 入住按钮
         qDebug() << "reservation 表已更新，state 字段设置为 1";
     }
 }
+
+void reservation_list::on_pushButton_13_clicked()//取消预约按钮
+{
+    QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
+    QModelIndexList selectedRows = selectionModel->selectedRows();
+
+    // 确保有选中的行
+    if (selectedRows.isEmpty()) {
+        qDebug() << "未选择任何行";
+
+    }
+
+    // 假设只处理第一选中行的房间号和房间类型
+    const QModelIndex &rowIndex = selectedRows.first(); // 获取选中行的第一个索引
+    int row = rowIndex.row();
+
+    // 获取数据模型
+    QAbstractItemModel *model = ui->tableView->model();
+    if (!model) {
+        qDebug() << "数据模型为空";
+    }
+
+    // 获取房间号（第 0 列）和房间类型（第 1 列）
+    QString roomNumber = model->data(model->index(row, 0)).toString(); // 第一列（房间号）
+    // 查询数据库获取房间类型（RoomType）
+    QSqlDatabase db = QSqlDatabase::database("reservation_list");
+    if (!db.open()) {
+        QMessageBox::critical(nullptr, "Database Error", db.lastError().text());
+
+    }
+
+    QString roomType; // 用于存储查询到的房间类型
+    QSqlQuery query(db);
+    query.prepare("SELECT RoomType FROM available_room WHERE RoomID = :roomNumber");
+    query.bindValue(":roomNumber", roomNumber);
+
+    if (query.exec()) {
+        if (query.next()) {
+            roomType = query.value(0).toString(); // 获取查询结果中的 RoomType
+            qDebug() << "查询到的房间类型：" << roomType;
+        } else {
+            qDebug() << "未找到匹配的房间类型";
+            QMessageBox::warning(this, "警告", "未找到匹配的房间类型");
+
+        }
+    } else {
+        qDebug() << "查询失败：" << query.lastError().text();
+        QMessageBox::critical(this, "错误", "查询房间类型失败");
+
+    }
+
+
+
+    // ***** 新增部分：更新 reservation 表的 state 字段 *****
+    // 假设手机尾号在表格的第 2 列
+    QString phoneTail = model->data(model->index(row, 2)).toString(); // 第二列（手机尾号）
+
+    QSqlQuery updateQuery(db);
+    updateQuery.prepare("UPDATE reservation SET state = 1 WHERE phonenumber = :phoneTail AND room_id = :roomNumber");
+    updateQuery.bindValue(":phoneTail", phoneTail);    // 绑定手机尾号
+    updateQuery.bindValue(":roomNumber", roomNumber);  // 绑定房间号
+
+    if (!updateQuery.exec()) {
+        qDebug() << "更新 reservation 表失败：" << updateQuery.lastError().text();
+        QMessageBox::critical(this, "错误", "更新预订状态失败：" + updateQuery.lastError().text());
+
+    } else {
+        qDebug() << "reservation 表已更新，state 字段设置为 1取消预约成功！";
+    }
+
+    updateQuery.prepare("UPDATE available_room SET State = 0 WHERE RoomID = :room_id");
+    updateQuery.bindValue(":room_id", roomNumber);
+
+    if (!updateQuery.exec()) {
+        QMessageBox::critical(this, "错误", "更新房间状态失败：" + updateQuery.lastError().text());
+        qDebug() << "更新房间状态失败：" << updateQuery.lastError().text();
+    } else {
+        QMessageBox::information(this, "成功", "取消预约成功！");
+        qDebug() << "房间状态已更新为可用（State = 0）";
+    }
+}
+

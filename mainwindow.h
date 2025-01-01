@@ -19,6 +19,7 @@ signals:
     void findip();
     void gettime();
     void sendjson(int a,QString jsonString);
+    void cleanreservation();
 private slots:
     void displayIPAddress(const QString &ip); // 显示 IP 地址
 
@@ -48,6 +49,7 @@ private slots:
     void on_available_xingzhengfang_clicked();
 
     void on_available_zongtongtaof_clicked();
+    void cleanreservation_list();
 
 private:
     Ui::MainWindow *ui;

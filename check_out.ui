@@ -165,19 +165,6 @@
     border-radius: 10px; /* 圆角边框 */</string>
     </property>
    </widget>
-   <widget class="QLabel" name="price">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>70</y>
-      <width>171</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>入住天数：</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
@@ -234,6 +221,45 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QLabel" name="daysStayed">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>20</y>
+       <width>171</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="roomtype">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>70</y>
+       <width>171</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="totalPrice">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>130</y>
+       <width>171</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <zorder>frame</zorder>
    <zorder>label</zorder>
@@ -245,7 +271,6 @@
    <zorder>label_5</zorder>
    <zorder>out_time</zorder>
    <zorder>in_time</zorder>
-   <zorder>price</zorder>
    <zorder>pushButton</zorder>
    <zorder>pushButton_2</zorder>
   </widget>

@@ -104,6 +104,24 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>410</y>
+       <width>141</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid rgba(0, 0, 0, 150); /* 黑色边框，150为不透明度 */
+    background-color: rgba(255, 255, 255, 200); /* 白色背景，200为不透明度 */
+    border-radius: 10px; /* 圆角边框 */</string>
+     </property>
+     <property name="text">
+      <string>清空接收缓冲区</string>
+     </property>
+    </widget>
    </widget>
    <zorder>frame</zorder>
    <zorder>label</zorder>

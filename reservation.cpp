@@ -315,7 +315,7 @@ void reservation::on_pushButton_11_clicked()//确认按钮
                 } else {
                     qDebug() << "更新available_room表State字段失败：" << updateQuery.lastError().text();
                 }
-
+                QMessageBox::critical(this, "成功", "预约记录添加成功！" );
                 db.close();
                 this->close();
 

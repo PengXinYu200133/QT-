@@ -39,6 +39,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_13_clicked();
+
 private:
     Ui::reservation_list *ui;
     QStandardItemModel *itemModel; // 表格数据模型

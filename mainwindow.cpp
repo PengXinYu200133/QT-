@@ -15,6 +15,10 @@
 #include "available_room_list.h"
 #include "reservation_list.h"
 #include "card_replacement.h"
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
+
 extern ESP8266 *globalESP;
 QDateTime globaltime;
 MainWindow::MainWindow(QWidget *parent)
@@ -29,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     // 连接 IP 地址信号到槽函数
     connect(globalESP, &ESP8266::ipAddressReceived, this, &MainWindow::displayIPAddress);
     connect(this, &MainWindow::findip, globalESP, &ESP8266::findIP);
+    connect(this, &MainWindow::cleanreservation, this, &MainWindow::cleanreservation_list);
     myfindip();
     // 创建一个 QTimer 对象
     QTimer *timer = new QTimer(this);
@@ -42,6 +47,10 @@ MainWindow::MainWindow(QWidget *parent)
         ui->dateTimeEdit->setDateTime(customDateTime);
         globaltime = customDateTime;
         //qDebug() << "更新 QDateTimeEdit：" << globaltime;
+        if (customDateTime.time().hour() == 0 && customDateTime.time().minute() == 0 && customDateTime.time().second() == 0) {
+            emit cleanreservation(); // 发出信号
+            qDebug() << "到晚上12点了清理这个时间段以前的预约记录！" << customDateTime;
+        }
     });
 
     // 启动定时器，每秒触发一次
@@ -53,9 +62,51 @@ MainWindow::~MainWindow() {
 
     delete ui;
 }
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QJsonDocument>
+void MainWindow::cleanreservation_list() {
+    // 确保数据库连接已打开
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("User.db");
+    if (!db.open()) {
+        qDebug() << "数据库连接失败：" << db.lastError().text();
+        return;
+    }
+
+    QSqlQuery query(db);
+    QSqlQuery updateQuery(db);
+
+    // 查询 reservation 表中 state = 0 且 expect_check_in_time 小于当前时间的记录
+    query.prepare("SELECT room_id FROM reservation WHERE state = 0 AND expect_check_in_time < :currentTime");
+    query.bindValue(":currentTime", globaltime.toString("yyyy-MM-dd hh:mm:ss"));
+
+    if (query.exec()) {
+        while (query.next()) {
+            QString roomId = query.value("room_id").toString();
+            qDebug() << "过期的预约记录 RoomID：" << roomId;
+
+            // 更新 reservation 表中对应记录的 state 字段为 1
+            updateQuery.prepare("UPDATE reservation SET state = 1 WHERE room_id = :roomId AND state = 0");
+            updateQuery.bindValue(":roomId", roomId);
+            if (!updateQuery.exec()) {
+                qDebug() << "更新 reservation 表失败：" << updateQuery.lastError().text();
+            } else {
+                qDebug() << "更新 reservation 表成功，RoomID：" << roomId;
+            }
+
+            // 更新 available_room 表中对应记录的 State 字段为 0
+            updateQuery.prepare("UPDATE available_room SET State = 0 WHERE RoomID = :roomId");
+            updateQuery.bindValue(":roomId", roomId);
+            if (!updateQuery.exec()) {
+                qDebug() << "更新 available_room 表失败：" << updateQuery.lastError().text();
+            } else {
+                qDebug() << "更新 available_room 表成功，RoomID：" << roomId;
+            }
+        }
+    } else {
+        qDebug() << "查询 reservation 表失败：" << query.lastError().text();
+    }
+
+    db.close();
+}
 
 void MainWindow::senddate(int a) {
     // 确保数据库连接已打开
@@ -192,13 +243,13 @@ void MainWindow::senddate(int a) {
     QTimer::singleShot(0, [this, a, oneYearJson]() {
         emit sendjson(a, oneYearJson); // 第一次发送
     });
-    QTimer::singleShot(1000, [this, a, threeMonthsJson]() {
+    QTimer::singleShot(1500, [this, a, threeMonthsJson]() {
         emit sendjson(a, threeMonthsJson); // 第二次发送
     });
-    QTimer::singleShot(2000, [this, a, oneMonthJson]() {
+    QTimer::singleShot(2500, [this, a, oneMonthJson]() {
         emit sendjson(a, oneMonthJson); // 第三次发送
     });
-    QTimer::singleShot(3000, [this, a, topFiveRoomTypesJson]() {
+    QTimer::singleShot(3500, [this, a, topFiveRoomTypesJson]() {
         emit sendjson(a, topFiveRoomTypesJson); // 第四次发送
     });
 }

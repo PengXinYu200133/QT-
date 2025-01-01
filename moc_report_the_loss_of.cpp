@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_report_the_loss_of_t {
-    QByteArrayData data[22];
-    char stringdata0[440];
+    QByteArrayData data[21];
+    char stringdata0[431];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,29 +35,28 @@ static const qt_meta_stringdata_report_the_loss_of_t qt_meta_stringdata_report_t
 QT_MOC_LITERAL(0, 0, 18), // "report_the_loss_of"
 QT_MOC_LITERAL(1, 19, 9), // "closedoor"
 QT_MOC_LITERAL(2, 29, 0), // ""
-QT_MOC_LITERAL(3, 30, 8), // "QString&"
-QT_MOC_LITERAL(4, 39, 4), // "data"
-QT_MOC_LITERAL(5, 44, 38), // "myon_phonenumber_cursorPositi..."
-QT_MOC_LITERAL(6, 83, 12), // "QMouseEvent*"
-QT_MOC_LITERAL(7, 96, 5), // "event"
-QT_MOC_LITERAL(8, 102, 24), // "on_pushButton_10_clicked"
-QT_MOC_LITERAL(9, 127, 23), // "on_pushButton_1_clicked"
-QT_MOC_LITERAL(10, 151, 23), // "on_pushButton_2_clicked"
-QT_MOC_LITERAL(11, 175, 23), // "on_pushButton_3_clicked"
-QT_MOC_LITERAL(12, 199, 23), // "on_pushButton_4_clicked"
-QT_MOC_LITERAL(13, 223, 23), // "on_pushButton_5_clicked"
-QT_MOC_LITERAL(14, 247, 23), // "on_pushButton_6_clicked"
-QT_MOC_LITERAL(15, 271, 23), // "on_pushButton_7_clicked"
-QT_MOC_LITERAL(16, 295, 23), // "on_pushButton_8_clicked"
-QT_MOC_LITERAL(17, 319, 23), // "on_pushButton_9_clicked"
-QT_MOC_LITERAL(18, 343, 23), // "on_pushButton_0_clicked"
-QT_MOC_LITERAL(19, 367, 24), // "on_pushButton_12_clicked"
-QT_MOC_LITERAL(20, 392, 24), // "on_pushButton_11_clicked"
-QT_MOC_LITERAL(21, 417, 22) // "limitPhoneNumberLength"
+QT_MOC_LITERAL(3, 30, 4), // "data"
+QT_MOC_LITERAL(4, 35, 38), // "myon_phonenumber_cursorPositi..."
+QT_MOC_LITERAL(5, 74, 12), // "QMouseEvent*"
+QT_MOC_LITERAL(6, 87, 5), // "event"
+QT_MOC_LITERAL(7, 93, 24), // "on_pushButton_10_clicked"
+QT_MOC_LITERAL(8, 118, 23), // "on_pushButton_1_clicked"
+QT_MOC_LITERAL(9, 142, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(10, 166, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(11, 190, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(12, 214, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(13, 238, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(14, 262, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(15, 286, 23), // "on_pushButton_8_clicked"
+QT_MOC_LITERAL(16, 310, 23), // "on_pushButton_9_clicked"
+QT_MOC_LITERAL(17, 334, 23), // "on_pushButton_0_clicked"
+QT_MOC_LITERAL(18, 358, 24), // "on_pushButton_12_clicked"
+QT_MOC_LITERAL(19, 383, 24), // "on_pushButton_11_clicked"
+QT_MOC_LITERAL(20, 408, 22) // "limitPhoneNumberLength"
 
     },
-    "report_the_loss_of\0closedoor\0\0QString&\0"
-    "data\0myon_phonenumber_cursorPositionChanged\0"
+    "report_the_loss_of\0closedoor\0\0data\0"
+    "myon_phonenumber_cursorPositionChanged\0"
     "QMouseEvent*\0event\0on_pushButton_10_clicked\0"
     "on_pushButton_1_clicked\0on_pushButton_2_clicked\0"
     "on_pushButton_3_clicked\0on_pushButton_4_clicked\0"
@@ -87,27 +86,27 @@ static const uint qt_meta_data_report_the_loss_of[] = {
        1,    1,   94,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    1,   97,    2, 0x08 /* Private */,
-       8,    0,  100,    2, 0x08 /* Private */,
-       9,    0,  101,    2, 0x08 /* Private */,
-      10,    0,  102,    2, 0x08 /* Private */,
-      11,    0,  103,    2, 0x08 /* Private */,
-      12,    0,  104,    2, 0x08 /* Private */,
-      13,    0,  105,    2, 0x08 /* Private */,
-      14,    0,  106,    2, 0x08 /* Private */,
-      15,    0,  107,    2, 0x08 /* Private */,
-      16,    0,  108,    2, 0x08 /* Private */,
-      17,    0,  109,    2, 0x08 /* Private */,
-      18,    0,  110,    2, 0x08 /* Private */,
-      19,    0,  111,    2, 0x08 /* Private */,
-      20,    0,  112,    2, 0x08 /* Private */,
-      21,    0,  113,    2, 0x08 /* Private */,
+       4,    1,   97,    2, 0x08 /* Private */,
+       7,    0,  100,    2, 0x08 /* Private */,
+       8,    0,  101,    2, 0x08 /* Private */,
+       9,    0,  102,    2, 0x08 /* Private */,
+      10,    0,  103,    2, 0x08 /* Private */,
+      11,    0,  104,    2, 0x08 /* Private */,
+      12,    0,  105,    2, 0x08 /* Private */,
+      13,    0,  106,    2, 0x08 /* Private */,
+      14,    0,  107,    2, 0x08 /* Private */,
+      15,    0,  108,    2, 0x08 /* Private */,
+      16,    0,  109,    2, 0x08 /* Private */,
+      17,    0,  110,    2, 0x08 /* Private */,
+      18,    0,  111,    2, 0x08 /* Private */,
+      19,    0,  112,    2, 0x08 /* Private */,
+      20,    0,  113,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, QMetaType::QString,    3,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, 0x80000000 | 5,    6,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -153,7 +152,7 @@ void report_the_loss_of::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (report_the_loss_of::*)(QString & );
+            using _t = void (report_the_loss_of::*)(QString );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&report_the_loss_of::closedoor)) {
                 *result = 0;
                 return;
@@ -203,7 +202,7 @@ int report_the_loss_of::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void report_the_loss_of::closedoor(QString & _t1)
+void report_the_loss_of::closedoor(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

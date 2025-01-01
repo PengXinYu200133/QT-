@@ -58,7 +58,7 @@ void card_replacement::initializeSerialPort()
     }
 
     // 配置串口参数
-    serial->setBaudRate(QSerialPort::Baud9600);
+    serial->setBaudRate(QSerialPort::Baud115200);
     serial->setDataBits(QSerialPort::Data8);
     serial->setParity(QSerialPort::NoParity);
     serial->setStopBits(QSerialPort::OneStop);
@@ -123,63 +123,87 @@ void card_replacement::handleSerialData()
         return;
     }
 
-    QByteArray receivedData = serial->readAll(); // 读取串口数据
-    QString dataString = QString::fromUtf8(receivedData).trimmed(); // 转换为字符串并去掉空白
-    qDebug() << "从串口接收到的数据：" << dataString;
+    static QByteArray receivedData; // 用于存储接收到的所有数据
+    receivedData.append(serial->readAll()); // 将新接收到的数据追加到缓冲区
 
-    if (dataString.contains("OK")) { // 如果接收数据包含 "OK"
-        QModelIndex index = ui->tableView->currentIndex();
-        if (!index.isValid()) {
-            qDebug() << "未选择任何行，无法更新数据";
-            QMessageBox::warning(this, "错误", "请选择一条记录！");
-            return;
+    // 循环处理完整的数据帧
+    while (true) {
+        int endIndex = receivedData.indexOf("\r\n"); // 查找消息结束标志 "\r\n"
+        if (endIndex == -1) {
+            // 未找到结束标志，等待下一次接收
+            break;
         }
 
-        // 获取选中记录的所有字段数据
-        QString ID = model->data(model->index(index.row(), 0)).toString();        // 获取 ID
-        QString name = model->data(model->index(index.row(), 1)).toString();     // 获取 Name
-        QString roomId = model->data(model->index(index.row(), 2)).toString();   // 获取 Room ID
-        QString roomType = model->data(model->index(index.row(), 3)).toString(); // 获取 Room Type
-        QString inTime = model->data(model->index(index.row(), 4)).toString();   // 获取 In Time
+        // 提取完整的一条消息
+        QString dataString = QString::fromUtf8(receivedData.left(endIndex)); // 转换为字符串
+        receivedData.remove(0, endIndex + 2); // 移除已处理的数据，包括 "\r\n"
+
+        qDebug() << "从 CON2 接收到的数据：" << dataString;
+
+        // 动态密码提取逻辑
+        if (dataString.startsWith("OK:") && dataString.length() >= 19) { // "OK:" + 16 位密码 = 至少 19 个字符
+            QString dynamicPassword = dataString.mid(3, 16); // 提取从第 3 个字符开始的 16 位密码
+            qDebug() << "提取到的动态密码：" << dynamicPassword;
+
+            // 调用处理动态密码的函数
+            QModelIndex index = ui->tableView->currentIndex();
+            if (!index.isValid()) {
+                qDebug() << "未选择任何行，无法更新数据";
+                QMessageBox::warning(this, "错误", "请选择一条记录！");
+                return;
+            }
+
+            // 获取选中记录的所有字段数据
+            QString ID = model->data(model->index(index.row(), 0)).toString();        // 获取 ID
+            QString name = model->data(model->index(index.row(), 1)).toString();     // 获取 Name
+            QString roomId = model->data(model->index(index.row(), 2)).toString();   // 获取 Room ID
+            QString roomType = model->data(model->index(index.row(), 3)).toString(); // 获取 Room Type
+            QString inTime = model->data(model->index(index.row(), 4)).toString();   // 获取 In Time
 
 
-        QSqlDatabase db = QSqlDatabase::database("card_replacement_connection");
-        if (!db.isOpen() && !db.open()) {
-            qDebug() << "数据库连接未打开！";
-            QMessageBox::critical(this, "错误", "数据库连接未打开！");
-            return;
-        }
+            QSqlDatabase db = QSqlDatabase::database("card_replacement_connection");
+            if (!db.isOpen() && !db.open()) {
+                qDebug() << "数据库连接未打开！";
+                QMessageBox::critical(this, "错误", "数据库连接未打开！");
+                return;
+            }
 
-        // 根据多个条件查询数据库
-        QSqlQuery query(db);
+            // 根据多个条件查询数据库
+            QSqlQuery query(db);
 
 
-        //更新记录状态
-        query.prepare("UPDATE lost_replacement SET state = 1 WHERE ID = :ID AND name = :name AND room_id = :room_id AND room_type = :room_type AND in_time = :in_time ");
-        query.bindValue(":ID", ID);
-        query.bindValue(":name", name);
-        query.bindValue(":room_id", roomId);
-        query.bindValue(":room_type", roomType);
-        query.bindValue(":in_time", inTime);
+            //更新记录状态
+            query.prepare("UPDATE lost_replacement SET state = 1 WHERE ID = :ID AND name = :name AND room_id = :room_id AND room_type = :room_type AND in_time = :in_time ");
+            query.bindValue(":ID", ID);
+            query.bindValue(":name", name);
+            query.bindValue(":room_id", roomId);
+            query.bindValue(":room_type", roomType);
+            query.bindValue(":in_time", inTime);
 
-        if (query.exec()) {
-            qDebug() << "成功更新记录的 state 字段为 1，ID：" << ID;
+            if (query.exec()) {
+                qDebug() << "成功更新记录的 state 字段为 1，ID：" << ID;
 
-            // 刷新数据
-            loadLostReplacementData();
+                // 刷新数据
+                loadLostReplacementData();
 
-            // 发射信号通知开门
-            QString date = "on:" + roomId;
-            emit card_replacement_opendoor(date);
+                // 发射信号通知开门
+                QString date = "on:" + dynamicPassword;
+                emit card_replacement_opendoor(date);
 
-            QMessageBox::information(this, "成功", "卡片替换成功！");
+                QMessageBox::information(this, "成功", "卡片替换成功！");
+            } else {
+                qDebug() << "数据更新失败：" << query.lastError().text();
+                QMessageBox::critical(this, "错误", "数据更新失败！");
+            }
+
         } else {
-            qDebug() << "数据更新失败：" << query.lastError().text();
-            QMessageBox::critical(this, "错误", "数据更新失败！");
+            // 数据无效时的处理
+            qDebug() << "接收到的无效数据：" << dataString;
+            QMessageBox::warning(this, "错误", "串口返回数据无效！请先去退卡");
         }
-    } else {
-        QMessageBox::warning(this, "错误", "串口返回数据无效！");
     }
+
+
 }
 
 void card_replacement::on_pushButton_clicked()

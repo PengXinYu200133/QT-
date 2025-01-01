@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_quick_check_in_t {
-    QByteArrayData data[22];
-    char stringdata0[442];
+    QByteArrayData data[21];
+    char stringdata0[433];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,34 +35,32 @@ static const qt_meta_stringdata_quick_check_in_t qt_meta_stringdata_quick_check_
 QT_MOC_LITERAL(0, 0, 14), // "quick_check_in"
 QT_MOC_LITERAL(1, 15, 14), // "quick_opendoor"
 QT_MOC_LITERAL(2, 30, 0), // ""
-QT_MOC_LITERAL(3, 31, 8), // "QString&"
-QT_MOC_LITERAL(4, 40, 4), // "data"
-QT_MOC_LITERAL(5, 45, 23), // "on_pushButton_1_clicked"
-QT_MOC_LITERAL(6, 69, 23), // "on_pushButton_3_clicked"
-QT_MOC_LITERAL(7, 93, 23), // "on_pushButton_2_clicked"
-QT_MOC_LITERAL(8, 117, 23), // "on_pushButton_4_clicked"
-QT_MOC_LITERAL(9, 141, 23), // "on_pushButton_5_clicked"
-QT_MOC_LITERAL(10, 165, 23), // "on_pushButton_6_clicked"
-QT_MOC_LITERAL(11, 189, 23), // "on_pushButton_7_clicked"
-QT_MOC_LITERAL(12, 213, 23), // "on_pushButton_8_clicked"
-QT_MOC_LITERAL(13, 237, 23), // "on_pushButton_9_clicked"
-QT_MOC_LITERAL(14, 261, 23), // "on_pushButton_0_clicked"
-QT_MOC_LITERAL(15, 285, 24), // "on_pushButton_11_clicked"
-QT_MOC_LITERAL(16, 310, 24), // "on_pushButton_12_clicked"
-QT_MOC_LITERAL(17, 335, 15), // "on_back_clicked"
-QT_MOC_LITERAL(18, 351, 35), // "myphonenumber_cursorPositionC..."
-QT_MOC_LITERAL(19, 387, 18), // "handleReceivedData"
-QT_MOC_LITERAL(20, 406, 18), // "on_queding_clicked"
-QT_MOC_LITERAL(21, 425, 16) // "handleSerialData"
+QT_MOC_LITERAL(3, 31, 4), // "data"
+QT_MOC_LITERAL(4, 36, 23), // "on_pushButton_1_clicked"
+QT_MOC_LITERAL(5, 60, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(6, 84, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(7, 108, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(8, 132, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(9, 156, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(10, 180, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(11, 204, 23), // "on_pushButton_8_clicked"
+QT_MOC_LITERAL(12, 228, 23), // "on_pushButton_9_clicked"
+QT_MOC_LITERAL(13, 252, 23), // "on_pushButton_0_clicked"
+QT_MOC_LITERAL(14, 276, 24), // "on_pushButton_11_clicked"
+QT_MOC_LITERAL(15, 301, 24), // "on_pushButton_12_clicked"
+QT_MOC_LITERAL(16, 326, 15), // "on_back_clicked"
+QT_MOC_LITERAL(17, 342, 35), // "myphonenumber_cursorPositionC..."
+QT_MOC_LITERAL(18, 378, 18), // "handleReceivedData"
+QT_MOC_LITERAL(19, 397, 18), // "on_queding_clicked"
+QT_MOC_LITERAL(20, 416, 16) // "handleSerialData"
 
     },
-    "quick_check_in\0quick_opendoor\0\0QString&\0"
-    "data\0on_pushButton_1_clicked\0"
-    "on_pushButton_3_clicked\0on_pushButton_2_clicked\0"
-    "on_pushButton_4_clicked\0on_pushButton_5_clicked\0"
-    "on_pushButton_6_clicked\0on_pushButton_7_clicked\0"
-    "on_pushButton_8_clicked\0on_pushButton_9_clicked\0"
-    "on_pushButton_0_clicked\0"
+    "quick_check_in\0quick_opendoor\0\0data\0"
+    "on_pushButton_1_clicked\0on_pushButton_3_clicked\0"
+    "on_pushButton_2_clicked\0on_pushButton_4_clicked\0"
+    "on_pushButton_5_clicked\0on_pushButton_6_clicked\0"
+    "on_pushButton_7_clicked\0on_pushButton_8_clicked\0"
+    "on_pushButton_9_clicked\0on_pushButton_0_clicked\0"
     "on_pushButton_11_clicked\0"
     "on_pushButton_12_clicked\0on_back_clicked\0"
     "myphonenumber_cursorPositionChanged\0"
@@ -88,26 +86,26 @@ static const uint qt_meta_data_quick_check_in[] = {
        1,    1,  104,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,  107,    2, 0x08 /* Private */,
-       6,    0,  108,    2, 0x08 /* Private */,
-       7,    0,  109,    2, 0x08 /* Private */,
-       8,    0,  110,    2, 0x08 /* Private */,
-       9,    0,  111,    2, 0x08 /* Private */,
-      10,    0,  112,    2, 0x08 /* Private */,
-      11,    0,  113,    2, 0x08 /* Private */,
-      12,    0,  114,    2, 0x08 /* Private */,
-      13,    0,  115,    2, 0x08 /* Private */,
-      14,    0,  116,    2, 0x08 /* Private */,
-      15,    0,  117,    2, 0x08 /* Private */,
-      16,    0,  118,    2, 0x08 /* Private */,
-      17,    0,  119,    2, 0x08 /* Private */,
-      18,    0,  120,    2, 0x08 /* Private */,
-      19,    1,  121,    2, 0x08 /* Private */,
-      20,    0,  124,    2, 0x08 /* Private */,
-      21,    0,  125,    2, 0x08 /* Private */,
+       4,    0,  107,    2, 0x08 /* Private */,
+       5,    0,  108,    2, 0x08 /* Private */,
+       6,    0,  109,    2, 0x08 /* Private */,
+       7,    0,  110,    2, 0x08 /* Private */,
+       8,    0,  111,    2, 0x08 /* Private */,
+       9,    0,  112,    2, 0x08 /* Private */,
+      10,    0,  113,    2, 0x08 /* Private */,
+      11,    0,  114,    2, 0x08 /* Private */,
+      12,    0,  115,    2, 0x08 /* Private */,
+      13,    0,  116,    2, 0x08 /* Private */,
+      14,    0,  117,    2, 0x08 /* Private */,
+      15,    0,  118,    2, 0x08 /* Private */,
+      16,    0,  119,    2, 0x08 /* Private */,
+      17,    0,  120,    2, 0x08 /* Private */,
+      18,    1,  121,    2, 0x08 /* Private */,
+      19,    0,  124,    2, 0x08 /* Private */,
+      20,    0,  125,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, QMetaType::QString,    3,
 
  // slots: parameters
     QMetaType::Void,
@@ -124,7 +122,7 @@ static const uint qt_meta_data_quick_check_in[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,    4,
+    QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -160,7 +158,7 @@ void quick_check_in::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (quick_check_in::*)(QString & );
+            using _t = void (quick_check_in::*)(QString );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&quick_check_in::quick_opendoor)) {
                 *result = 0;
                 return;
@@ -210,7 +208,7 @@ int quick_check_in::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void quick_check_in::quick_opendoor(QString & _t1)
+void quick_check_in::quick_opendoor(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

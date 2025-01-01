@@ -35,7 +35,7 @@ LoginWindow::~LoginWindow()
 void sqlite_Init()
 {
 
-    QString dbName = "User.db";
+    QString dbName = "/pxy/User.db";
 
     // 检查数据库文件是否存在
     bool dbExists = QFile::exists(dbName);

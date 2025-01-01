@@ -75,12 +75,12 @@ connect(this, &in_optroomtype::opendoor, globalESP, &ESP8266::broadcastData);
     }
 
     // 配置串口参数
-    serial->setBaudRate(QSerialPort::Baud9600);
+    serial->setBaudRate(QSerialPort::Baud115200);
     serial->setDataBits(QSerialPort::Data8);
     serial->setParity(QSerialPort::NoParity);
     serial->setStopBits(QSerialPort::OneStop);
     serial->setFlowControl(QSerialPort::NoFlowControl);
-
+    serial->clear(); // 清空接收和发送缓冲区
     // 连接串口信号，用于接收数据
     connect(serial, &QSerialPort::readyRead, this, &in_optroomtype::handleSerialData);
 }
@@ -93,13 +93,13 @@ in_optroomtype::~in_optroomtype()
         delete model;
     }
 
-    if (serial) {
+    /*if (serial) {
         if (serial->isOpen()) {
             serial->close();
         }
         delete serial;
         serial = nullptr;
-    }
+    }*/
 }
 
 // 确认按钮
@@ -133,69 +133,120 @@ void in_optroomtype::on_pushButton_clicked()
 // 处理串口返回数据
 void in_optroomtype::handleSerialData()
 {
+    // 检查串口是否已打开
     if (!serial || !serial->isOpen()) {
         qDebug() << "串口未打开，无法接收数据";
-
+        return; // 提前返回，避免后续操作
     }
 
-    QByteArray receivedData = serial->readAll(); // 读取串口数据
-    QString dataString = QString::fromUtf8(receivedData); // 转换为字符串
-    qDebug() << "从 CON2 接收到的数据：" << dataString;
+    static QByteArray receivedData; // 用于存储接收到的所有数据
+    receivedData.append(serial->readAll()); // 将新接收到的数据追加到缓冲区
 
-    // 如果收到的返回数据有效，则插入数据库
-    if (dataString.contains("OK")) {
-        QSqlDatabase db = QSqlDatabase::database("in_optroomtype");
-        if (!db.isOpen()) {
-            qDebug() << "数据库未打开";
-
+    // 循环处理完整的数据帧
+    while (true) {
+        int endIndex = receivedData.indexOf("\r\n"); // 查找消息结束标志 "\r\n"
+        if (endIndex == -1) {
+            // 未找到结束标志，等待下一次接收
+            break;
         }
 
-        QString name = m_date[0];
-        QString idCard = m_date[1];
-        QString roomType = m_date[2];
-        QModelIndex index = ui->tableView->currentIndex();
-        QString roomId = model->data(model->index(index.row(), 0)).toString();
-        QString formattedTime = globaltime.toString("yyyy-MM-dd hh:mm:ss");
+        // 提取完整的一条消息
+        QString dataString = QString::fromUtf8(receivedData.left(endIndex)); // 转换为字符串
+        receivedData.remove(0, endIndex + 2); // 移除已处理的数据，包括 "\r\n"
 
-        QSqlQuery query(db);
-        QString insertQuery = QString("INSERT INTO check_in (name, room_type, room_id, ID, in_time) VALUES (:name, :roomType, :roomId, :id, :time)");
-        query.prepare(insertQuery);
-        query.bindValue(":name", name);
-        query.bindValue(":roomType", roomType);
-        query.bindValue(":roomId", roomId);
-        query.bindValue(":id", idCard);
-        query.bindValue(":time", formattedTime);
+        qDebug() << "从 CON2 接收到的数据：" << dataString;
 
-        if (query.exec()) {
-            qDebug() << "数据插入成功！";
-            QString updateQuery = QString("UPDATE available_room SET State = 1 WHERE RoomID = :RoomID"); // 根据房间号匹配
-            QSqlQuery updateStateQuery(db);
-            updateStateQuery.prepare(updateQuery);
-            updateStateQuery.bindValue(":RoomID", roomId);
+        // 动态密码提取逻辑
+        if (dataString.startsWith("OK:") && dataString.length() >= 19) { // "OK:" + 16 位密码 = 至少 19 个字符
+            QString dynamicPassword = dataString.mid(3, 16); // 提取从第 3 个字符开始的 16 位密码
+            qDebug() << "提取到的动态密码：" << dynamicPassword;
 
-            if (updateStateQuery.exec()) {
-                qDebug() << "available_room 表的 State 字段更新成功！";
-            } else {
-                qDebug() << "available_room 表的 State 字段更新失败：" << updateStateQuery.lastError().text();
-            }
-            QMessageBox::information(this, "成功", "房间已成功入住！");
-            if (serial && serial->isOpen()) {
-                serial->close(); // 关闭串口
-                qDebug() << "串口已关闭（成功）";
-            }
-            delete serial;
-            QString maydata = "on:"+roomId;
-            emit opendoor(maydata);
-            this->close();
+            // 调用处理动态密码的函数
+            handleDynamicPassword(dynamicPassword);
 
         } else {
-            qDebug() << "数据插入失败：" << query.lastError().text();
-            QMessageBox::information(this, "错误", "数据插入失败！");
+            // 数据无效时的处理
+            qDebug() << "接收到的无效数据：" << dataString;
+            QMessageBox::warning(this, "错误", "串口返回数据无效！请先去退卡");
         }
-    } else {
-
-        QMessageBox::warning(this, "错误", "串口返回数据无效！请先去退卡");
     }
+}
+
+void in_optroomtype::handleDynamicPassword(const QString &dynamicPassword)
+{
+    // 检查数据库是否已打开
+    QSqlDatabase db = QSqlDatabase::database("in_optroomtype");
+    if (!db.isOpen()) {
+        qDebug() << "数据库未打开";
+        return; // 提前返回，避免后续操作
+    }
+
+    // 获取入住信息
+    QString name = m_date[0];
+    QString idCard = m_date[1];
+    QString roomType = m_date[2];
+    QModelIndex index = ui->tableView->currentIndex();
+    QString roomId = model->data(model->index(index.row(), 0)).toString();
+    QString formattedTime = globaltime.toString("yyyy-MM-dd hh:mm:ss");
+
+    // 插入数据到 check_in 表
+    QSqlQuery query(db);
+    QString insertQuery = QString("INSERT INTO check_in (name, room_type, room_id, ID, in_time) VALUES (:name, :roomType, :roomId, :id, :time)");
+    query.prepare(insertQuery);
+    query.bindValue(":name", name);
+    query.bindValue(":roomType", roomType);
+    query.bindValue(":roomId", roomId);
+    query.bindValue(":id", idCard);
+    query.bindValue(":time", formattedTime);
+
+    if (query.exec()) {
+        qDebug() << "数据插入成功！";
+
+        // 更新房间状态
+        QString updateQuery = QString("UPDATE available_room SET State = 1 WHERE RoomID = :RoomID"); // 根据房间号匹配
+        QSqlQuery updateStateQuery(db);
+        updateStateQuery.prepare(updateQuery);
+        updateStateQuery.bindValue(":RoomID", roomId);
+
+        if (updateStateQuery.exec()) {
+            qDebug() << "available_room 表的 State 字段更新成功！";
+        } else {
+            qDebug() << "available_room 表的 State 字段更新失败：" << updateStateQuery.lastError().text();
+        }
+
+        // 显示成功消息并关闭串口
+        QMessageBox::information(this, "成功", "房间已成功入住！");
+        if (serial && serial->isOpen()) {
+            serial->close(); // 关闭串口
+            qDebug() << "串口已关闭（成功）";
+        }
+        delete serial;
+
+        // 将提取到的动态密码作为信号参数，通知其他模块开门
+        QString maydata = "on:" + dynamicPassword;
+        emit opendoor(maydata); // 发送信号，附加动态密码
+        this->close();
+
+    } else {
+        qDebug() << "数据插入失败：" << query.lastError().text();
+        QMessageBox::information(this, "错误", "数据插入失败！");
+    }
+}
+
+void in_optroomtype::sendRoomNumber(const QString &roomNumber)
+{
+    if (!serial || !serial->isOpen()) {
+        qDebug() << "串口未打开，无法发送数据";
+        return;
+    }
+
+    QString message = "r+" + roomNumber + "\r\n"; // 格式化房间号消息
+    serial->write(message.toUtf8()); // 发送数据
+    serial->flush(); // 刷新串口，确保数据发送完成
+
+    qDebug() << "准备发送房间号到串口：" << message.trimmed();
+    QThread::msleep(100); // 等待 100 毫秒（根据设备响应时间调整）
+    qDebug() << "数据发送成功：" << message.trimmed();
 }
 
 // 返回按钮
@@ -209,3 +260,9 @@ void in_optroomtype::on_pushButton_2_clicked()
     p->show();
     this->close();
 }
+
+void in_optroomtype::on_pushButton_3_clicked()//清空串口接收缓冲区
+{
+
+}
+
